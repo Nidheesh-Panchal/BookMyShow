@@ -23,7 +23,7 @@ public class register extends javax.swing.JFrame {
     
     public static Connection connecrDb() {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/nid", "root", "root");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bms", "root", "root");
             return conn;
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
@@ -156,10 +156,10 @@ public class register extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(38, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,7 +185,7 @@ public class register extends javax.swing.JFrame {
             return;
         }
         
-        String sql = "insert into bms.customer (username,password,emailid) values (?,?,?)";
+        String sql = "insert into customer (username,password,emailid) values (?,?,?)";
         try 
         {
             pst = conn.prepareStatement(sql);
@@ -193,7 +193,12 @@ public class register extends javax.swing.JFrame {
             pst.setString(2,password_txt.getText());
             pst.setString(3,mail_txt.getText() + domain);
             pst.execute();
-            JOptionPane.showMessageDialog(null, "Registration Successful");
+            
+            SendEmail s=new SendEmail();
+            s.registered(mail_txt.getText()+domain);
+            sms sendsms=new sms();
+            sendsms.send();
+            JOptionPane.showMessageDialog(null,"Registered succesfully");
             this.dispose();
         } 
         catch (Exception ex) 
