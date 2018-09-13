@@ -6,6 +6,8 @@
 package login;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import static java.awt.event.KeyEvent.*;
 import java.sql.*;
 import javax.swing.*;
 
@@ -123,7 +125,9 @@ public class login extends javax.swing.JFrame {
         jToggleButton2.setText("jToggleButton2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Login");
         setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        setLocation(new java.awt.Point(500, 200));
         setResizable(false);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Login", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
@@ -133,6 +137,11 @@ public class login extends javax.swing.JFrame {
         login_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 login_buttonActionPerformed(evt);
+            }
+        });
+        login_button.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                login_buttonKeyTyped(evt);
             }
         });
 
@@ -145,11 +154,27 @@ public class login extends javax.swing.JFrame {
                 username_txtActionPerformed(evt);
             }
         });
+        username_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                username_txtKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                username_txtKeyTyped(evt);
+            }
+        });
 
         password_txt.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         password_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 password_txtActionPerformed(evt);
+            }
+        });
+        password_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                password_txtKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                password_txtKeyTyped(evt);
             }
         });
 
@@ -219,16 +244,16 @@ public class login extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(81, 81, 81)
+                .addGap(43, 43, 43)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(20, 20, 20)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
@@ -267,6 +292,9 @@ public class login extends javax.swing.JFrame {
                 if (rs.getNString("password").equals(pass))
                 {
                     JOptionPane.showMessageDialog(null, "username and password are correct");
+                    String username=username_txt.getText();
+                    mainpage mainp=new mainpage(username);
+                    mainp.setVisible(true);
                 }
                 else
                 {
@@ -289,6 +317,115 @@ public class login extends javax.swing.JFrame {
         password_txt.setText("");
         username_txt.setText("");
     }//GEN-LAST:event_register_buttonActionPerformed
+
+    private void username_txtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_username_txtKeyPressed
+        // TODO add your handling code here:
+        if(KeyEvent.VK_ENTER==evt.getKeyChar())
+        {
+            if(password_txt.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(null,"Please enter password in the password field");
+            return;
+        }
+        if(username_txt.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(null,"Please enter valid username");
+            return;
+        }
+        String sql = "select * from customer where username=?;";
+        try {
+            pst = conn.prepareStatement(sql);
+            pst.setString(1,username_txt.getText());
+            //pst.setString(2,password_txt.getText());
+            rs = pst.executeQuery();
+            if (rs.next())
+            {
+                //JOptionPane.showMessageDialog(null, "username and password are correct");
+                String pass=password_txt.getText();
+                if (rs.getNString("password").equals(pass))
+                {
+                    JOptionPane.showMessageDialog(null, "username and password are correct");
+                    String username=username_txt.getText();
+                    mainpage mainp=new mainpage(username);
+                    mainp.setVisible(true);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Either username or password is incorrect");
+                }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "no username");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        }
+    }//GEN-LAST:event_username_txtKeyPressed
+
+    private void username_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_username_txtKeyTyped
+        // TODO add your handling code here:
+        if(' '==evt.getKeyChar())
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_username_txtKeyTyped
+
+    private void password_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_password_txtKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_password_txtKeyTyped
+
+    private void login_buttonKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_login_buttonKeyTyped
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_login_buttonKeyTyped
+
+    private void password_txtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_password_txtKeyPressed
+        // TODO add your handling code here:
+        if(KeyEvent.VK_ENTER==evt.getKeyChar())
+        {
+            if(password_txt.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(null,"Please enter password in the password field");
+            return;
+        }
+        if(username_txt.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(null,"Please enter valid username");
+            return;
+        }
+        String sql = "select * from customer where username=?;";
+        try {
+            pst = conn.prepareStatement(sql);
+            pst.setString(1,username_txt.getText());
+            //pst.setString(2,password_txt.getText());
+            rs = pst.executeQuery();
+            if (rs.next())
+            {
+                //JOptionPane.showMessageDialog(null, "username and password are correct");
+                String pass=password_txt.getText();
+                if (rs.getNString("password").equals(pass))
+                {
+                    JOptionPane.showMessageDialog(null, "username and password are correct");
+                    String username=username_txt.getText();
+                    mainpage mainp=new mainpage(username);
+                    mainp.setVisible(true);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Either username or password is incorrect");
+                }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "no username");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        }
+    }//GEN-LAST:event_password_txtKeyPressed
 
     /**
      * @param args the command line arguments
