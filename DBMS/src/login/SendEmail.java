@@ -19,8 +19,8 @@ public class SendEmail
 
 public void registered(String receiver) {   
 
-    final String username = "nilu.1999@yahoo.com"; //ur email
-    final String password = "942902446013";
+    final String username = "mykinonva@yahoo.com"; //ur email
+    final String password = "nilu1data";
     //final String receiver = "2016ucp1008@mnit.ac.in";
 
     Properties props = new Properties();
@@ -53,8 +53,8 @@ public void registered(String receiver) {
         message.setFrom(new InternetAddress(username));//ur email
         message.setRecipients(Message.RecipientType.TO,
         InternetAddress.parse(receiver));//u will send to
-        message.setSubject("Welcome to \"whatever the name is\"");    
-        message.setText("Hi,\n Get ready to get spam emails now. We are always closed to any feedback that you give.\nThank you");
+        message.setSubject("Welcome to MyKino");    
+        message.setText("Hi,\n Welcome to the brand new movie booking application. \n\nDid you know that MyKino means my movie theatre.\nThank you for registering");
        Transport.send(message);
         
         /*MimeBodyPart messageBodyPart = new MimeBodyPart();

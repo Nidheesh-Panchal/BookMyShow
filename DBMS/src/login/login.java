@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+///u2022 for dot character in password
 package login;
 
 import java.awt.*;
@@ -129,6 +130,13 @@ public class login extends javax.swing.JFrame {
         setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         setLocation(new java.awt.Point(500, 200));
         setResizable(false);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+                formWindowLostFocus(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Login", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
 
@@ -164,6 +172,7 @@ public class login extends javax.swing.JFrame {
         });
 
         password_txt.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        password_txt.setEchoChar('\u2022');
         password_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 password_txtActionPerformed(evt);
@@ -291,10 +300,14 @@ public class login extends javax.swing.JFrame {
                 String pass=password_txt.getText();
                 if (rs.getNString("password").equals(pass))
                 {
-                    JOptionPane.showMessageDialog(null, "username and password are correct");
                     String username=username_txt.getText();
-                    mainpage mainp=new mainpage(username);
+                    JOptionPane.showMessageDialog(null, "username and password are correct");                   
+                    password_txt.setText("");
+                    username_txt.setText("");
+                    mainpage mainp=new mainpage(username,this);
                     mainp.setVisible(true);
+                    this.setVisible(false);
+                    this.dispose();
                 }
                 else
                 {
@@ -346,8 +359,12 @@ public class login extends javax.swing.JFrame {
                 {
                     JOptionPane.showMessageDialog(null, "username and password are correct");
                     String username=username_txt.getText();
-                    mainpage mainp=new mainpage(username);
+                    password_txt.setText("");
+                    username_txt.setText("");
+                    mainpage mainp=new mainpage(username,this);
                     mainp.setVisible(true);
+                    this.setVisible(false);
+                    this.dispose();
                 }
                 else
                 {
@@ -409,8 +426,12 @@ public class login extends javax.swing.JFrame {
                 {
                     JOptionPane.showMessageDialog(null, "username and password are correct");
                     String username=username_txt.getText();
-                    mainpage mainp=new mainpage(username);
+                    password_txt.setText("");
+                    username_txt.setText("");
+                    mainpage mainp=new mainpage(username,this);
                     mainp.setVisible(true);
+                    this.setVisible(false);
+                    this.dispose();
                 }
                 else
                 {
@@ -426,6 +447,10 @@ public class login extends javax.swing.JFrame {
         }
         }
     }//GEN-LAST:event_password_txtKeyPressed
+
+    private void formWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowLostFocus
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowLostFocus
 
     /**
      * @param args the command line arguments
@@ -457,7 +482,8 @@ public class login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new login().setVisible(true);
+                login l = new login();
+                l.setVisible(true);
             }
         });
     }

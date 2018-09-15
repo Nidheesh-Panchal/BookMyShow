@@ -7,8 +7,10 @@ package login;
 
 import javax.swing.JOptionPane;
 import java.awt.*;
+import java.awt.event.ComponentListener;
 import java.awt.event.KeyEvent;
 import static java.awt.event.KeyEvent.*;
+import java.awt.event.WindowListener;
 import java.sql.*;
 import javax.swing.*;
 
@@ -22,6 +24,9 @@ public class mainpage extends javax.swing.JFrame {
      * Creates new form mainpage
      */
     String username;
+    private final login log;
+
+    
     public static Connection connecrDb() {
         try {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bms", "root", "root");
@@ -35,10 +40,11 @@ public class mainpage extends javax.swing.JFrame {
     Connection conn = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
-    public mainpage(String use) {
+    public mainpage(String use,login form) {
         initComponents();
         username=use;
         conn=connecrDb();
+        log=form;
     }
 
     private mainpage() {
@@ -62,30 +68,24 @@ public class mainpage extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
-        profile_panel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        username_txt = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        mail_txt = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        fname_txt = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        lname_txt = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
         updateprofile_panel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        username_txt1 = new javax.swing.JTextField();
+        username_txt = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         password_txt = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
         repass_txt = new javax.swing.JPasswordField();
         jLabel10 = new javax.swing.JLabel();
-        fname_txt1 = new javax.swing.JTextField();
+        fname_txt = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        lname_txt1 = new javax.swing.JTextField();
+        lname_txt = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        mail_txt1 = new javax.swing.JTextField();
+        mail_txt = new javax.swing.JTextField();
         update_button = new javax.swing.JButton();
+        logout_button = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -146,100 +146,40 @@ public class mainpage extends javax.swing.JFrame {
             .addGap(0, 250, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jTabbedPane2.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jTabbedPane2StateChanged(evt);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
             }
-        });
-        jTabbedPane2.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                jTabbedPane2ComponentShown(evt);
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
 
-        profile_panel.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                profile_panelComponentShown(evt);
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton1.setText("Book Movie");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel1.setText("Username");
+        jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        username_txt.setEditable(false);
-        username_txt.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                username_txtKeyTyped(evt);
-            }
-        });
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "History", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
-        jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel5.setText("Email Id");
-
-        mail_txt.setEditable(false);
-
-        jLabel8.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel8.setText("First Name");
-
-        fname_txt.setEditable(false);
-
-        jLabel9.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel9.setText("Last Name");
-
-        lname_txt.setEditable(false);
-
-        javax.swing.GroupLayout profile_panelLayout = new javax.swing.GroupLayout(profile_panel);
-        profile_panel.setLayout(profile_panelLayout);
-        profile_panelLayout.setHorizontalGroup(
-            profile_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(profile_panelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(profile_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(profile_panelLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(51, 51, 51)
-                        .addComponent(username_txt, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
-                    .addGroup(profile_panelLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(65, 65, 65)
-                        .addComponent(mail_txt))
-                    .addGroup(profile_panelLayout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(profile_panelLayout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(49, 49, 49)
-                        .addGroup(profile_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fname_txt)
-                            .addComponent(lname_txt))))
-                .addGap(21, 21, 21))
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-        profile_panelLayout.setVerticalGroup(
-            profile_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(profile_panelLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(profile_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(username_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(profile_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(mail_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(profile_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(fname_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(profile_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(lname_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(92, Short.MAX_VALUE))
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 168, Short.MAX_VALUE)
         );
 
-        jTabbedPane2.addTab("Profile", profile_panel);
-
+        updateprofile_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Update", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
         updateprofile_panel.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 updateprofile_panelComponentShown(evt);
@@ -249,18 +189,22 @@ public class mainpage extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel2.setText("Username");
 
-        username_txt1.setEditable(false);
-        username_txt1.addKeyListener(new java.awt.event.KeyAdapter() {
+        username_txt.setEditable(false);
+        username_txt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                username_txt1KeyTyped(evt);
+                username_txtKeyTyped(evt);
             }
         });
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel7.setText("New Password");
 
+        password_txt.setEchoChar('\u2022');
+
         jLabel6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel6.setText("Retype Password");
+
+        repass_txt.setEchoChar('\u2022');
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel10.setText("First Name");
@@ -271,7 +215,7 @@ public class mainpage extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel12.setText("Email Id");
 
-        mail_txt1.setEditable(false);
+        mail_txt.setEditable(false);
 
         update_button.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         update_button.setText("Update");
@@ -286,9 +230,9 @@ public class mainpage extends javax.swing.JFrame {
         updateprofile_panelLayout.setHorizontalGroup(
             updateprofile_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(updateprofile_panelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(updateprofile_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(updateprofile_panelLayout.createSequentialGroup()
-                        .addGap(39, 39, 39)
                         .addGroup(updateprofile_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel6)
@@ -298,24 +242,24 @@ public class mainpage extends javax.swing.JFrame {
                             .addComponent(jLabel11))
                         .addGap(27, 27, 27)
                         .addGroup(updateprofile_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(lname_txt1, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                            .addComponent(fname_txt1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(username_txt1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lname_txt, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(fname_txt, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(username_txt, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(password_txt, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(repass_txt, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(mail_txt1, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addComponent(mail_txt, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addGroup(updateprofile_panelLayout.createSequentialGroup()
-                        .addGap(123, 123, 123)
+                        .addGap(84, 84, 84)
                         .addComponent(update_button)))
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         updateprofile_panelLayout.setVerticalGroup(
             updateprofile_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(updateprofile_panelLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addContainerGap()
                 .addGroup(updateprofile_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(username_txt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(username_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(updateprofile_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -327,21 +271,48 @@ public class mainpage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(updateprofile_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(mail_txt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(mail_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(updateprofile_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(fname_txt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fname_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(updateprofile_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(lname_txt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lname_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(update_button)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("Update Profile", updateprofile_panel);
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(updateprofile_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(updateprofile_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        logout_button.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        logout_button.setText("Log Out");
+        logout_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logout_buttonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -349,15 +320,30 @@ public class mainpage extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane2)
-                .addContainerGap())
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(logout_button)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 294, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(65, 65, 65))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane2)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(logout_button)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(25, 25, 25))))
         );
 
         pack();
@@ -371,75 +357,59 @@ public class mainpage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jTabbedPane2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane2StateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTabbedPane2StateChanged
-
     private void username_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_username_txtKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_username_txtKeyTyped
-
-    private void username_txt1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_username_txt1KeyTyped
         // TODO add your handling code here:
         if(' '==evt.getKeyChar())
         {
             evt.consume();
         }
-    }//GEN-LAST:event_username_txt1KeyTyped
-
-    private void jTabbedPane2ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jTabbedPane2ComponentShown
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTabbedPane2ComponentShown
+    }//GEN-LAST:event_username_txtKeyTyped
 
     private void updateprofile_panelComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_updateprofile_panelComponentShown
         // TODO add your handling code here:
-//        username_txt1.setText("Nidheesh");
-//        fname_txt1.setText("Nidheesh");
-//        lname_txt1.setText("Panchal");
-//        mail_txt1.setText("nidheeshpanchal@gmail.com");
+    }//GEN-LAST:event_updateprofile_panelComponentShown
 
-String sql = "select * from customer where username=?;";
+    private void update_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_buttonActionPerformed
+        // TODO add your handling code here:        
+        if(password_txt.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(null,"Please enter password in the password field");
+            return;
+        }
+        if(fname_txt.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(null,"Please enter First Name in the field");
+            return;
+        }
+        if(lname_txt.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(null,"Please enter Last Name in the field");
+            return;
+        }
+        if(!password_txt.getText().equals(repass_txt.getText()))
+        {
+            JOptionPane.showMessageDialog(null,"Passwords do not match");
+            password_txt.setText("");
+            repass_txt.setText("");
+            return;
+        }
+        String sql = "update customer set password=?,firstname=?,lastname=? where username=?;";
         try {
             pst = conn.prepareStatement(sql);
-            pst.setString(1,username);
-            //pst.setString(2,password_txt.getText());
-            rs = pst.executeQuery();
-            if (rs.next())
-            {
-                username_txt1.setText(rs.getNString("username"));
-                fname_txt1.setText(rs.getNString("firstname"));
-                lname_txt1.setText(rs.getNString("lastname"));
-                mail_txt1.setText(rs.getNString("emailid"));
-                //JOptionPane.showMessageDialog(null, "username and password are correct");
-//                String pass=password_txt.getText();
-//                if (rs.getNString("password").equals(pass))
-//                {
-//                    JOptionPane.showMessageDialog(null, "username and password are correct");
-//                    String username=username_txt.getText();
-//                    mainpage mainp=new mainpage(username);
-//                    mainp.setVisible(true);
-//                }
-//                else
-//                {
-//                    JOptionPane.showMessageDialog(null, "Either username or password is incorrect");
-//                }
-                
-            }
-//            else
-//            {
-//                JOptionPane.showMessageDialog(null, "no username");
-//            }
+            pst.setString(1,password_txt.getText());
+            pst.setString(2,fname_txt.getText());
+            pst.setString(3,lname_txt.getText());
+            pst.setString(4,username);
+            pst.execute();
+            JOptionPane.showMessageDialog(null,"Updated Successfully");
+            password_txt.setText("");
+            repass_txt.setText("");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-    }//GEN-LAST:event_updateprofile_panelComponentShown
+    }//GEN-LAST:event_update_buttonActionPerformed
 
-    private void profile_panelComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_profile_panelComponentShown
-        // TODO add your handling code here:
-//        username_txt.setText("username");
-//        mail_txt.setText("nidheeshpancahl@gmail.com");
-//        fname_txt.setText("Nidheesh");
-//        lname_txt.setText("Panchal");
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 String sql = "select * from customer where username=?;";
         try {
             pst = conn.prepareStatement(sql);
@@ -449,9 +419,9 @@ String sql = "select * from customer where username=?;";
             if (rs.next())
             {
                 username_txt.setText(rs.getNString("username"));
-                mail_txt.setText(rs.getNString("emailid"));
                 fname_txt.setText(rs.getNString("firstname"));
                 lname_txt.setText(rs.getNString("lastname"));
+                mail_txt.setText(rs.getNString("emailid"));
                 //JOptionPane.showMessageDialog(null, "username and password are correct");
 //                String pass=password_txt.getText();
 //                if (rs.getNString("password").equals(pass))
@@ -473,51 +443,29 @@ String sql = "select * from customer where username=?;";
 //            }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
-        }
-    }//GEN-LAST:event_profile_panelComponentShown
+        }        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_formWindowOpened
 
-    private void update_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_buttonActionPerformed
-        // TODO add your handling code here:        
-        if(password_txt.getText().equals(""))
-        {
-            JOptionPane.showMessageDialog(null,"Please enter password in the password field");
-            return;
-        }
-        if(username_txt.getText().equals(""))
-        {
-            JOptionPane.showMessageDialog(null,"Please enter valid username");
-            return;
-        }
-        String sql = "select * from customer where username=?;";
-        try {
-            pst = conn.prepareStatement(sql);
-            pst.setString(1,username_txt.getText());
-            //pst.setString(2,password_txt.getText());
-            rs = pst.executeQuery();
-            if (rs.next())
-            {
-                //JOptionPane.showMessageDialog(null, "username and password are correct");
-                String pass=password_txt.getText();
-                if (rs.getNString("password").equals(pass))
-                {
-                    JOptionPane.showMessageDialog(null, "username and password are correct");
-                    String username=username_txt.getText();
-                    mainpage mainp=new mainpage(username);
-                    mainp.setVisible(true);
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(null, "Either username or password is incorrect");
-                }
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(null, "no username");
-            }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }
-    }//GEN-LAST:event_update_buttonActionPerformed
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_formWindowClosed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        seat s=new seat(username,this);
+        s.setVisible(true);
+        this.setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void logout_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout_buttonActionPerformed
+        // TODO add your handling code here:
+        log.setVisible(true);
+        this.setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_logout_buttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -556,36 +504,30 @@ String sql = "select * from customer where username=?;";
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField fname_txt;
-    private javax.swing.JTextField fname_txt1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField lname_txt;
-    private javax.swing.JTextField lname_txt1;
+    private javax.swing.JButton logout_button;
     private javax.swing.JTextField mail_txt;
-    private javax.swing.JTextField mail_txt1;
     private javax.swing.JPasswordField password_txt;
-    private javax.swing.JPanel profile_panel;
     private javax.swing.JPasswordField repass_txt;
     private javax.swing.JButton update_button;
     private javax.swing.JPanel updateprofile_panel;
     private javax.swing.JTextField username_txt;
-    private javax.swing.JTextField username_txt1;
     // End of variables declaration//GEN-END:variables
 }

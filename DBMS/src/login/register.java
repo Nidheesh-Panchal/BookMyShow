@@ -72,6 +72,8 @@ public class register extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Register", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
 
+        password_txt.setEchoChar('\u2022');
+
         mail_domain.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         mail_domain.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "@gmail.com", "@yahoo.com", "@hotmail.com", "@mnit.ac.in" }));
 
@@ -108,6 +110,8 @@ public class register extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel6.setText("Retype Password");
+
+        repass_txt.setEchoChar('\u2022');
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel8.setText("First Name");

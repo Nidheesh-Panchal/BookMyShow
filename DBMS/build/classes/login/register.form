@@ -150,6 +150,9 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JPasswordField" name="password_txt">
+          <Properties>
+            <Property name="echoChar" type="char" value="&#x2022;"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="mail_domain">
           <Properties>
@@ -231,6 +234,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="repass_txt">
+          <Properties>
+            <Property name="echoChar" type="char" value="&#x2022;"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
