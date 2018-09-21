@@ -34,10 +34,16 @@ public class register extends javax.swing.JFrame {
     Connection conn = null;
     PreparedStatement pst=null;
     ResultSet rs = null;
-    public register() 
+    public final login log;
+    public register(login l) 
     {
         initComponents();
         conn = connecrDb();
+        log=l;
+    }
+
+    private register() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -69,6 +75,11 @@ public class register extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Register");
         setLocation(new java.awt.Point(500, 200));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Register", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
 
@@ -261,6 +272,14 @@ public class register extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_username_txtKeyTyped
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        //JOptionPane.showMessageDialog(null,"hello");
+        log.setVisible(true);
+        this.setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments

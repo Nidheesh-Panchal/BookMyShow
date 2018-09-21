@@ -19,8 +19,8 @@ public class SendEmail
 
 public void registered(String receiver) {   
 
-    final String username = "mykinonva@yahoo.com"; //ur email
-    final String password = "nilu1data";
+    final String username = "cineclick@yahoo.com"; //ur email
+    final String password = "Cineklik2018";
     //final String receiver = "2016ucp1008@mnit.ac.in";
 
     Properties props = new Properties();

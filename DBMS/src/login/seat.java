@@ -625,6 +625,16 @@ public class seat extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
+        String set2="set autocommit=1;";
+        try
+        {
+            pst = conn.prepareStatement(set2);
+            pst.execute();
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,e);
+        }
         mainp.setVisible(true);
         this.setVisible(false);
         this.dispose();
@@ -642,32 +652,23 @@ public class seat extends javax.swing.JFrame {
         //use rollback to delete data if there is no booking.
         // username,theatreid,challid,time,date,seatno
         String sql="insert into ticket values (?,?,?,?,?,?);";
-//        String set="set autocommit=0;";
-        String savep="commit;";
+        String set1="set autocommit=0;";
+        String set2="set autocommit=1;";
         String roll="rollback;";
-//        try
-//        {
-//            pst = conn.prepareStatement(set);
-//            pst.execute();
-//        }
-//        catch(Exception e)
-//        {
-//            JOptionPane.showMessageDialog(null,e);
-//        }
         try
         {
-            pst = conn.prepareStatement(savep);
+            pst = conn.prepareStatement(set1);
             pst.execute();
         }
         catch(Exception e)
         {
             JOptionPane.showMessageDialog(null,e);
         }
-        
+        int count=0;
         try
         {
             pst = conn.prepareStatement(sql);
-            pst.setString(1,"Nidheesh");
+            pst.setString(1,username);
             pst.setString(2,"1");
             pst.setString(3,"1");
             pst.setString(4,(String) ds.getSelectedItem());
@@ -676,322 +677,341 @@ public class seat extends javax.swing.JFrame {
             if(a1.isSelected())
             {
                 pst.setString(6,"a1");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(a2.isSelected())
             {
                 pst.setString(6,"a2");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(a3.isSelected())
             {
                 pst.setString(6,"a3");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(a4.isSelected())
             {
                 pst.setString(6,"a4");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(a5.isSelected())
             {
                 pst.setString(6,"a5");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(a6.isSelected())
             {
                 pst.setString(6,"a6");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(a7.isSelected())
             {
                 pst.setString(6,"a7");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(a8.isSelected())
             {
                 pst.setString(6,"a8");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(b1.isSelected())
             {
                 pst.setString(6,"b1");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(b2.isSelected())
             {
                 pst.setString(6,"b2");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(b3.isSelected())
             {
                 pst.setString(6,"b3");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(b4.isSelected())
             {
                 pst.setString(6,"b4");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(b5.isSelected())
             {
                 pst.setString(6,"b5");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(b6.isSelected())
             {
                 pst.setString(6,"b6");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(b7.isSelected())
             {
                 pst.setString(6,"b7");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(b8.isSelected())
             {
                 pst.setString(6,"b8");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(c1.isSelected())
             {
                 pst.setString(6,"c1");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(c2.isSelected())
             {
                 pst.setString(6,"c2");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(c3.isSelected())
             {
                 pst.setString(6,"c3");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(c4.isSelected())
             {
                 pst.setString(6,"c4");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(c5.isSelected())
             {
                 pst.setString(6,"c5");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(c6.isSelected())
             {
                 pst.setString(6,"c6");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(c7.isSelected())
             {
                 pst.setString(6,"c7");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(c8.isSelected())
             {
                 pst.setString(6,"c8");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(d1.isSelected())
             {
                 pst.setString(6,"d1");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(d2.isSelected())
             {
                 pst.setString(6,"d2");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(d3.isSelected())
             {
                 pst.setString(6,"d3");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(d4.isSelected())
             {
                 pst.setString(6,"d4");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(d5.isSelected())
             {
                 pst.setString(6,"d5");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(d6.isSelected())
             {
                 pst.setString(6,"d6");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(d7.isSelected())
             {
                 pst.setString(6,"d7");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(d8.isSelected())
             {
                 pst.setString(6,"d8");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(e1.isSelected())
             {
                 pst.setString(6,"e1");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(e2.isSelected())
             {
                 pst.setString(6,"e2");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(e3.isSelected())
             {
                 pst.setString(6,"e3");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(e4.isSelected())
             {
                 pst.setString(6,"e4");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(e5.isSelected())
             {
                 pst.setString(6,"e5");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(e6.isSelected())
             {
                 pst.setString(6,"e6");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(e7.isSelected())
             {
                 pst.setString(6,"e7");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(e8.isSelected())
             {
                 pst.setString(6,"e8");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(f1.isSelected())
             {
                 pst.setString(6,"f1");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(f2.isSelected())
             {
                 pst.setString(6,"f2");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(f3.isSelected())
             {
                 pst.setString(6,"f3");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(f4.isSelected())
             {
                 pst.setString(6,"f4");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(f5.isSelected())
             {
                 pst.setString(6,"f5");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(f6.isSelected())
             {
                 pst.setString(6,"f6");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(f7.isSelected())
             {
                 pst.setString(6,"f7");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(f8.isSelected())
             {
                 pst.setString(6,"f8");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(g1.isSelected())
             {
                 pst.setString(6,"g1");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(g2.isSelected())
             {
                 pst.setString(6,"g2");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(g3.isSelected())
             {
                 pst.setString(6,"g3");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(g4.isSelected())
             {
                 pst.setString(6,"g4");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(g5.isSelected())
             {
                 pst.setString(6,"g5");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(g6.isSelected())
             {
                 pst.setString(6,"g6");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(g7.isSelected())
             {
                 pst.setString(6,"g7");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(g8.isSelected())
             {
                 pst.setString(6,"g8");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(h1.isSelected())
             {
                 pst.setString(6,"h1");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(h2.isSelected())
             {
                 pst.setString(6,"h2");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(h3.isSelected())
             {
                 pst.setString(6,"h3");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(h4.isSelected())
             {
                 pst.setString(6,"h4");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(h5.isSelected())
             {
                 pst.setString(6,"h5");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(h6.isSelected())
             {
                 pst.setString(6,"h6");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(h7.isSelected())
             {
                 pst.setString(6,"h7");
-                pst.execute();
+                pst.execute(); count++;
             }
             if(h8.isSelected())
             {
                 pst.setString(6,"h8");
-                pst.execute();
+                pst.execute(); count++;
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,e);
+        }
+        int cost=0;
+        String c="select cost from screening where theatreid=? and challid=? and time=? and date=?";
+        try
+        {
+            pst = conn.prepareStatement(c);
+            pst.setString(1,"1");
+            pst.setString(2,"1");
+            pst.setString(3,(String) ds.getSelectedItem());
+            pst.setString(4,"2018-10-01");
+            rs=pst.executeQuery();
+            if(rs.next())
+            {
+                cost=rs.getInt(1);
             }
         }
         catch(Exception e)
@@ -999,14 +1019,29 @@ public class seat extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,e);
         }
         
-        int cnf=JOptionPane.showConfirmDialog(null, "Confirm this movie ticket?");
+        
+        int cnf=JOptionPane.showConfirmDialog(null, "Confirm this movie ticket?\nCost = "+(cost*count));
         // if pressed yes to confirm. that is the first button. that is button number 0.
         if(cnf==0)
         {
             JOptionPane.showMessageDialog(null, "Confirmed booking");
             try
             {
-                pst = conn.prepareStatement(savep);
+                pst = conn.prepareStatement(set2);
+                pst.execute();
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null,e);
+            }
+            String abc="update screening set noseatbooked=noseatbooked+"+count+" where theatreid=? and challid=? and time=? and date=?";
+            try
+            {
+                pst = conn.prepareStatement(abc);
+                pst.setString(1,"1");
+                pst.setString(2,"1");
+                pst.setString(3,(String) ds.getSelectedItem());
+                pst.setString(4,"2018-10-01");
                 pst.execute();
             }
             catch(Exception e)
@@ -1017,35 +1052,35 @@ public class seat extends javax.swing.JFrame {
             this.hide();
             this.dispose();
         }
-//        if(cnf==1)
-//        {
-//            try
-//            {
-//                pst = conn.prepareStatement(roll);
-//                pst.execute();
-//            }
-//            catch(Exception e)
-//            {
-//                JOptionPane.showMessageDialog(null,"rollingback");
-//                JOptionPane.showMessageDialog(null,e);
-//            }
-//        }
-    }//GEN-LAST:event_book_buttonActionPerformed
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
-        // get movieid,challid and date for time slots in theatres. Then fromthat we get a single theatre id 
-        // we use combination of those to get seats booked.
-        String set="set autocommit=0;";
+        else
+        {
+            
+            try
+            {
+                pst = conn.prepareStatement(roll);
+                pst.execute();
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null,"rollingback");
+                JOptionPane.showMessageDialog(null,e);
+            }
+        }
         try
         {
-            pst = conn.prepareStatement(set);
+            pst = conn.prepareStatement(set2);
             pst.execute();
         }
         catch(Exception e)
         {
             JOptionPane.showMessageDialog(null,e);
         }
+    }//GEN-LAST:event_book_buttonActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        // get movieid,challid and date for time slots in theatres. Then fromthat we get a single theatre id 
+        // we use combination of those to get seats booked.
         int count=0;
         String time="select * from screening where movieid=? and challid=? and date=?";
         try
