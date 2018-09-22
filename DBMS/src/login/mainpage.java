@@ -37,6 +37,7 @@ public class mainpage extends javax.swing.JFrame {
         }
         return null;
     }
+    JPanel a=new javax.swing.JPanel();
     Connection conn = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
@@ -86,6 +87,8 @@ public class mainpage extends javax.swing.JFrame {
         mail_txt = new javax.swing.JTextField();
         update_button = new javax.swing.JButton();
         logout_button = new javax.swing.JButton();
+        screen = new javax.swing.JScrollPane();
+        go_button = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -314,6 +317,19 @@ public class mainpage extends javax.swing.JFrame {
             }
         });
 
+        screen.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        screen.setViewportBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        screen.setMaximumSize(new java.awt.Dimension(438, 224));
+        screen.setMinimumSize(new java.awt.Dimension(438, 224));
+        screen.setPreferredSize(new java.awt.Dimension(438, 224));
+
+        go_button.setText("Go");
+        go_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                go_buttonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -323,13 +339,19 @@ public class mainpage extends javax.swing.JFrame {
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(logout_button)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 294, Short.MAX_VALUE)
+                        .addGap(179, 179, 179)
                         .addComponent(jButton1)
-                        .addGap(65, 65, 65))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(logout_button, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(go_button, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(screen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,13 +359,15 @@ public class mainpage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(logout_button)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(25, 25, 25))))
+                        .addComponent(go_button)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(screen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -410,7 +434,52 @@ public class mainpage extends javax.swing.JFrame {
     }//GEN-LAST:event_update_buttonActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-String sql = "select * from customer where username=?;";
+        
+       // JPanel a=new javax.swing.JPanel();
+	//a.setLayout(new BoxLayout(a,BoxLayout.Y_AXIS));
+        a.setLayout(new BoxLayout(a, BoxLayout.Y_AXIS));
+        JButton b = new javax.swing.JButton("Hello world!");
+        JButton c = new javax.swing.JButton("Hello world!");
+        JButton d = new javax.swing.JButton("Hello world!");
+        JButton e = new javax.swing.JButton("Hello world!");
+        JButton f = new javax.swing.JButton("Hello world!");
+        JButton g = new javax.swing.JButton("Hello world!");
+        JButton h = new javax.swing.JButton("Hello world!");
+        JButton i = new javax.swing.JButton("Hello world!");
+        JButton j = new javax.swing.JButton("Hello world!");
+        JButton k = new javax.swing.JButton("Hello world!");
+        JButton l = new javax.swing.JButton("Hello world!");
+        JButton m = new javax.swing.JButton("Hello world!");
+        JButton n = new javax.swing.JButton("Hello world!");
+        JButton o = new javax.swing.JButton("Hello world!");
+        JButton p = new javax.swing.JButton("Hello world!");
+        JButton q = new javax.swing.JButton("Hello world!");
+        a.add((Component)b);
+        a.add((Component)c);
+        a.add((Component)d);
+        a.add((Component)e);
+        a.add((Component)f);
+        a.add((Component)g);
+        a.add((Component)h);
+        a.add((Component)i);
+        a.add((Component)j);
+        a.add((Component)k);
+        a.add((Component)l);
+        a.add((Component)m);
+        a.add((Component)n);
+        a.add((Component)o);
+        a.add((Component)p);
+        a.add((Component)q);
+        
+        a.setAutoscrolls(true);
+        //JScrollPane sp=new javax.swing.JScrollPane(a);
+        //screen.add(sp,0);
+        //screen.setViewportView(a);
+        screen.getViewport().add(a);
+        screen.repaint();
+        screen.updateUI();
+        
+        String sql = "select * from customer where username=?;";
         try {
             pst = conn.prepareStatement(sql);
             pst.setString(1,username);
@@ -467,6 +536,22 @@ String sql = "select * from customer where username=?;";
         this.dispose();
     }//GEN-LAST:event_logout_buttonActionPerformed
 
+    private void go_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_go_buttonActionPerformed
+        // TODO add your handling code here:
+//        JButton b = new javax.swing.JButton("Hello");
+//        Component a=b;
+//        screen.add(a, 0);
+
+//        JPanel a=new javax.swing.JPanel();
+//        a.setPreferredSize(new Dimension(500, 75));
+//	a.setLayout(new FlowLayout());
+//        JButton b = new javax.swing.JButton("Hello world!");
+//        a.add((Component)b);
+//        a.updateUI();
+//        screen.setViewportView(a);
+//        screen.updateUI();
+    }//GEN-LAST:event_go_buttonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -504,6 +589,7 @@ String sql = "select * from customer where username=?;";
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField fname_txt;
+    private javax.swing.JButton go_button;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -526,6 +612,7 @@ String sql = "select * from customer where username=?;";
     private javax.swing.JTextField mail_txt;
     private javax.swing.JPasswordField password_txt;
     private javax.swing.JPasswordField repass_txt;
+    public javax.swing.JScrollPane screen;
     private javax.swing.JButton update_button;
     private javax.swing.JPanel updateprofile_panel;
     private javax.swing.JTextField username_txt;

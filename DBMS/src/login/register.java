@@ -248,7 +248,7 @@ public class register extends javax.swing.JFrame {
             pst.execute();
 
             SendEmail s=new SendEmail();
-            s.registered(mail_txt.getText()+domain);
+            s.registered(mail_txt.getText()+domain,username_txt.getText());
             /*sms sendsms=new sms();
             sendsms.send();*/
             JOptionPane.showMessageDialog(null,"Registered succesfully");

@@ -1048,6 +1048,8 @@ public class seat extends javax.swing.JFrame {
             {
                 JOptionPane.showMessageDialog(null,e);
             }
+//            SendEmail s=new SendEmail();
+//            s.booked(username);
             mainp.setVisible(true);
             this.hide();
             this.dispose();
