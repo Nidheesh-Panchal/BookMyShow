@@ -10,7 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 /**
  *
@@ -1083,6 +1083,7 @@ public class seat extends javax.swing.JFrame {
         // TODO add your handling code here:
         // get movieid,challid and date for time slots in theatres. Then fromthat we get a single theatre id 
         // we use combination of those to get seats booked.
+        
         int count=0;
         String time="select * from screening where movieid=? and challid=? and date=?";
         try
