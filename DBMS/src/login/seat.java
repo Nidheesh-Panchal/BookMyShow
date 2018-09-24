@@ -5,7 +5,12 @@
  */
 package login;
 
-import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.*;
 
 /**
  *
@@ -16,10 +21,27 @@ public class seat extends javax.swing.JFrame {
     /**
      * Creates new form seat
      */
+    //takes username,theatre id,challid,date,time for ticket booking
+    Connection conn = null;
+    ResultSet rs = null;
+    PreparedStatement pst = null;
+    DefaultComboBoxModel ds=new DefaultComboBoxModel();
+    public static Connection connecrDb() {
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bms", "root", "root");
+            return conn;
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+            System.out.println("Connection failure");
+        }
+        return null;
+    }
+    
     public final mainpage mainp;
     String username;
     public seat(String use,mainpage m) {
         initComponents();
+        conn = connecrDb();
         username=use;
         mainp=m;
     }
@@ -112,9 +134,15 @@ public class seat extends javax.swing.JFrame {
         back_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         addHierarchyListener(new java.awt.event.HierarchyListener() {
             public void hierarchyChanged(java.awt.event.HierarchyEvent evt) {
                 formHierarchyChanged(evt);
+            }
+        });
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
             }
         });
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
@@ -128,10 +156,17 @@ public class seat extends javax.swing.JFrame {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
             }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
         });
 
         time_slot.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        time_slot.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "time 1", "time 2", "time 3", "time 4" }));
+        time_slot.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                time_slotItemStateChanged(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Time");
@@ -148,8 +183,18 @@ public class seat extends javax.swing.JFrame {
         jLabel4.setText("Silver");
 
         a1.setText("A1");
+        a1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                a1ActionPerformed(evt);
+            }
+        });
 
         a2.setText("A2");
+        a2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                a2ActionPerformed(evt);
+            }
+        });
 
         a3.setText("A3");
 
@@ -536,30 +581,33 @@ public class seat extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(back_button)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(time_slot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(time_slot, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(218, 218, 218)
                         .addComponent(book_button)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(time_slot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(back_button))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(time_slot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(back_button)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(book_button)
                 .addContainerGap())
         );
@@ -577,6 +625,16 @@ public class seat extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
+        String set2="set autocommit=1;";
+        try
+        {
+            pst = conn.prepareStatement(set2);
+            pst.execute();
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,e);
+        }
         mainp.setVisible(true);
         this.setVisible(false);
         this.dispose();
@@ -592,13 +650,853 @@ public class seat extends javax.swing.JFrame {
     private void book_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_book_buttonActionPerformed
         // TODO add your handling code here:
         //use rollback to delete data if there is no booking.
-        int cnf=JOptionPane.showConfirmDialog(null, "Confirm this movie ticket?");
-        // if pressed yes to confirm
+        // username,theatreid,challid,time,date,seatno
+        String sql="insert into ticket values (?,?,?,?,?,?);";
+        String set1="set autocommit=0;";
+        String set2="set autocommit=1;";
+        String roll="rollback;";
+        try
+        {
+            pst = conn.prepareStatement(set1);
+            pst.execute();
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,e);
+        }
+        int count=0;
+        try
+        {
+            pst = conn.prepareStatement(sql);
+            pst.setString(1,username);
+            pst.setString(2,"1");
+            pst.setString(3,"1");
+            pst.setString(4,(String) ds.getSelectedItem());
+            pst.setString(5,"2018-10-01");
+            //rs = pst.executeQuery();            
+            if(a1.isSelected())
+            {
+                pst.setString(6,"a1");
+                pst.execute(); count++;
+            }
+            if(a2.isSelected())
+            {
+                pst.setString(6,"a2");
+                pst.execute(); count++;
+            }
+            if(a3.isSelected())
+            {
+                pst.setString(6,"a3");
+                pst.execute(); count++;
+            }
+            if(a4.isSelected())
+            {
+                pst.setString(6,"a4");
+                pst.execute(); count++;
+            }
+            if(a5.isSelected())
+            {
+                pst.setString(6,"a5");
+                pst.execute(); count++;
+            }
+            if(a6.isSelected())
+            {
+                pst.setString(6,"a6");
+                pst.execute(); count++;
+            }
+            if(a7.isSelected())
+            {
+                pst.setString(6,"a7");
+                pst.execute(); count++;
+            }
+            if(a8.isSelected())
+            {
+                pst.setString(6,"a8");
+                pst.execute(); count++;
+            }
+            if(b1.isSelected())
+            {
+                pst.setString(6,"b1");
+                pst.execute(); count++;
+            }
+            if(b2.isSelected())
+            {
+                pst.setString(6,"b2");
+                pst.execute(); count++;
+            }
+            if(b3.isSelected())
+            {
+                pst.setString(6,"b3");
+                pst.execute(); count++;
+            }
+            if(b4.isSelected())
+            {
+                pst.setString(6,"b4");
+                pst.execute(); count++;
+            }
+            if(b5.isSelected())
+            {
+                pst.setString(6,"b5");
+                pst.execute(); count++;
+            }
+            if(b6.isSelected())
+            {
+                pst.setString(6,"b6");
+                pst.execute(); count++;
+            }
+            if(b7.isSelected())
+            {
+                pst.setString(6,"b7");
+                pst.execute(); count++;
+            }
+            if(b8.isSelected())
+            {
+                pst.setString(6,"b8");
+                pst.execute(); count++;
+            }
+            if(c1.isSelected())
+            {
+                pst.setString(6,"c1");
+                pst.execute(); count++;
+            }
+            if(c2.isSelected())
+            {
+                pst.setString(6,"c2");
+                pst.execute(); count++;
+            }
+            if(c3.isSelected())
+            {
+                pst.setString(6,"c3");
+                pst.execute(); count++;
+            }
+            if(c4.isSelected())
+            {
+                pst.setString(6,"c4");
+                pst.execute(); count++;
+            }
+            if(c5.isSelected())
+            {
+                pst.setString(6,"c5");
+                pst.execute(); count++;
+            }
+            if(c6.isSelected())
+            {
+                pst.setString(6,"c6");
+                pst.execute(); count++;
+            }
+            if(c7.isSelected())
+            {
+                pst.setString(6,"c7");
+                pst.execute(); count++;
+            }
+            if(c8.isSelected())
+            {
+                pst.setString(6,"c8");
+                pst.execute(); count++;
+            }
+            if(d1.isSelected())
+            {
+                pst.setString(6,"d1");
+                pst.execute(); count++;
+            }
+            if(d2.isSelected())
+            {
+                pst.setString(6,"d2");
+                pst.execute(); count++;
+            }
+            if(d3.isSelected())
+            {
+                pst.setString(6,"d3");
+                pst.execute(); count++;
+            }
+            if(d4.isSelected())
+            {
+                pst.setString(6,"d4");
+                pst.execute(); count++;
+            }
+            if(d5.isSelected())
+            {
+                pst.setString(6,"d5");
+                pst.execute(); count++;
+            }
+            if(d6.isSelected())
+            {
+                pst.setString(6,"d6");
+                pst.execute(); count++;
+            }
+            if(d7.isSelected())
+            {
+                pst.setString(6,"d7");
+                pst.execute(); count++;
+            }
+            if(d8.isSelected())
+            {
+                pst.setString(6,"d8");
+                pst.execute(); count++;
+            }
+            if(e1.isSelected())
+            {
+                pst.setString(6,"e1");
+                pst.execute(); count++;
+            }
+            if(e2.isSelected())
+            {
+                pst.setString(6,"e2");
+                pst.execute(); count++;
+            }
+            if(e3.isSelected())
+            {
+                pst.setString(6,"e3");
+                pst.execute(); count++;
+            }
+            if(e4.isSelected())
+            {
+                pst.setString(6,"e4");
+                pst.execute(); count++;
+            }
+            if(e5.isSelected())
+            {
+                pst.setString(6,"e5");
+                pst.execute(); count++;
+            }
+            if(e6.isSelected())
+            {
+                pst.setString(6,"e6");
+                pst.execute(); count++;
+            }
+            if(e7.isSelected())
+            {
+                pst.setString(6,"e7");
+                pst.execute(); count++;
+            }
+            if(e8.isSelected())
+            {
+                pst.setString(6,"e8");
+                pst.execute(); count++;
+            }
+            if(f1.isSelected())
+            {
+                pst.setString(6,"f1");
+                pst.execute(); count++;
+            }
+            if(f2.isSelected())
+            {
+                pst.setString(6,"f2");
+                pst.execute(); count++;
+            }
+            if(f3.isSelected())
+            {
+                pst.setString(6,"f3");
+                pst.execute(); count++;
+            }
+            if(f4.isSelected())
+            {
+                pst.setString(6,"f4");
+                pst.execute(); count++;
+            }
+            if(f5.isSelected())
+            {
+                pst.setString(6,"f5");
+                pst.execute(); count++;
+            }
+            if(f6.isSelected())
+            {
+                pst.setString(6,"f6");
+                pst.execute(); count++;
+            }
+            if(f7.isSelected())
+            {
+                pst.setString(6,"f7");
+                pst.execute(); count++;
+            }
+            if(f8.isSelected())
+            {
+                pst.setString(6,"f8");
+                pst.execute(); count++;
+            }
+            if(g1.isSelected())
+            {
+                pst.setString(6,"g1");
+                pst.execute(); count++;
+            }
+            if(g2.isSelected())
+            {
+                pst.setString(6,"g2");
+                pst.execute(); count++;
+            }
+            if(g3.isSelected())
+            {
+                pst.setString(6,"g3");
+                pst.execute(); count++;
+            }
+            if(g4.isSelected())
+            {
+                pst.setString(6,"g4");
+                pst.execute(); count++;
+            }
+            if(g5.isSelected())
+            {
+                pst.setString(6,"g5");
+                pst.execute(); count++;
+            }
+            if(g6.isSelected())
+            {
+                pst.setString(6,"g6");
+                pst.execute(); count++;
+            }
+            if(g7.isSelected())
+            {
+                pst.setString(6,"g7");
+                pst.execute(); count++;
+            }
+            if(g8.isSelected())
+            {
+                pst.setString(6,"g8");
+                pst.execute(); count++;
+            }
+            if(h1.isSelected())
+            {
+                pst.setString(6,"h1");
+                pst.execute(); count++;
+            }
+            if(h2.isSelected())
+            {
+                pst.setString(6,"h2");
+                pst.execute(); count++;
+            }
+            if(h3.isSelected())
+            {
+                pst.setString(6,"h3");
+                pst.execute(); count++;
+            }
+            if(h4.isSelected())
+            {
+                pst.setString(6,"h4");
+                pst.execute(); count++;
+            }
+            if(h5.isSelected())
+            {
+                pst.setString(6,"h5");
+                pst.execute(); count++;
+            }
+            if(h6.isSelected())
+            {
+                pst.setString(6,"h6");
+                pst.execute(); count++;
+            }
+            if(h7.isSelected())
+            {
+                pst.setString(6,"h7");
+                pst.execute(); count++;
+            }
+            if(h8.isSelected())
+            {
+                pst.setString(6,"h8");
+                pst.execute(); count++;
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,e);
+        }
+        int cost=0;
+        String c="select cost from screening where theatreid=? and challid=? and time=? and date=?";
+        try
+        {
+            pst = conn.prepareStatement(c);
+            pst.setString(1,"1");
+            pst.setString(2,"1");
+            pst.setString(3,(String) ds.getSelectedItem());
+            pst.setString(4,"2018-10-01");
+            rs=pst.executeQuery();
+            if(rs.next())
+            {
+                cost=rs.getInt(1);
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,e);
+        }
+        
+        
+        int cnf=JOptionPane.showConfirmDialog(null, "Confirm this movie ticket?\nCost = "+(cost*count));
+        // if pressed yes to confirm. that is the first button. that is button number 0.
         if(cnf==0)
         {
             JOptionPane.showMessageDialog(null, "Confirmed booking");
+            try
+            {
+                pst = conn.prepareStatement(set2);
+                pst.execute();
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null,e);
+            }
+            String abc="update screening set noseatbooked=noseatbooked+"+count+" where theatreid=? and challid=? and time=? and date=?";
+            try
+            {
+                pst = conn.prepareStatement(abc);
+                pst.setString(1,"1");
+                pst.setString(2,"1");
+                pst.setString(3,(String) ds.getSelectedItem());
+                pst.setString(4,"2018-10-01");
+                pst.execute();
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null,e);
+            }
+//            SendEmail s=new SendEmail();
+//            s.booked(username);
+            mainp.setVisible(true);
+            this.hide();
+            this.dispose();
+        }
+        else
+        {
+            
+            try
+            {
+                pst = conn.prepareStatement(roll);
+                pst.execute();
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null,"rollingback");
+                JOptionPane.showMessageDialog(null,e);
+            }
+        }
+        try
+        {
+            pst = conn.prepareStatement(set2);
+            pst.execute();
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,e);
         }
     }//GEN-LAST:event_book_buttonActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        // get movieid,challid and date for time slots in theatres. Then fromthat we get a single theatre id 
+        // we use combination of those to get seats booked.
+        
+        int count=0;
+        String time="select * from screening where movieid=? and challid=? and date=?";
+        try
+        {
+            pst = conn.prepareStatement(time);
+            pst.setString(1,"1");
+            pst.setString(2,"1");
+            pst.setString(3,"2018-10-01");
+            rs=pst.executeQuery();
+            while(rs.next())
+            {
+                int tslot=rs.getInt("time");
+                ds.addElement(Integer.toString(tslot));
+                if(count==0)
+                {
+                    count++;
+                    ds.setSelectedItem(Integer.toString(tslot));
+                    }
+            }
+            time_slot.setModel(ds);
+            
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,"time slots");
+            JOptionPane.showMessageDialog(null,e);
+        }
+        String sql="select * from ticket where theatreid=? and challid=? and time=? and date=?";
+        try
+        {
+            pst = conn.prepareStatement(sql);
+            pst.setString(1,"1");
+            pst.setString(2,"1");
+            String temp = (String) ds.getSelectedItem();
+            pst.setString(3,temp);
+            
+            //pst.setString(3,"2100");
+            pst.setString(4,"2018-10-01");
+            rs = pst.executeQuery();
+            String bseat;
+            while (rs.next())
+            {
+                bseat=rs.getNString("seatno");
+                switch(bseat)
+                {
+                    case "a1":a1.setEnabled(false);
+                            break;
+                    case "a2":a2.setEnabled(false);
+                            break;
+                    case "a3":a3.setEnabled(false);
+                            break;
+                    case "a4":a4.setEnabled(false);
+                            break;
+                    case "a5":a5.setEnabled(false);
+                            break;
+                    case "a6":a6.setEnabled(false);
+                            break;
+                    case "a7":a7.setEnabled(false);
+                            break;
+                    case "a8":a8.setEnabled(false);
+                            break;
+                    case "b1":b1.setEnabled(false);
+                            break;
+                    case "b2":b2.setEnabled(false);
+                            break;
+                    case "b3":b3.setEnabled(false);
+                            break;
+                    case "b4":b4.setEnabled(false);
+                            break;
+                    case "b5":b5.setEnabled(false);
+                            break;
+                    case "b6":b6.setEnabled(false);
+                            break;
+                    case "b7":b7.setEnabled(false);
+                            break;
+                    case "b8":b8.setEnabled(false);
+                            break;
+                    case "c1":c1.setEnabled(false);
+                            break;
+                    case "c2":c2.setEnabled(false);
+                            break;
+                    case "c3":c3.setEnabled(false);
+                            break;
+                    case "c4":c4.setEnabled(false);
+                            break;
+                    case "c5":c5.setEnabled(false);
+                            break;
+                    case "c6":c6.setEnabled(false);
+                            break;
+                    case "c7":c7.setEnabled(false);
+                            break;
+                    case "c8":c8.setEnabled(false);
+                            break;
+                    case "d1":d1.setEnabled(false);
+                            break;
+                    case "d2":d2.setEnabled(false);
+                            break;
+                    case "d3":d3.setEnabled(false);
+                            break;
+                    case "d4":d4.setEnabled(false);
+                            break;
+                    case "d5":d5.setEnabled(false);
+                            break;
+                    case "d6":d6.setEnabled(false);
+                            break;
+                    case "d7":d7.setEnabled(false);
+                            break;
+                    case "d8":d8.setEnabled(false);
+                            break;
+                    case "e1":e1.setEnabled(false);
+                            break;
+                    case "e2":e2.setEnabled(false);
+                            break;
+                    case "e3":e3.setEnabled(false);
+                            break;
+                    case "e4":e4.setEnabled(false);
+                            break;
+                    case "e5":e5.setEnabled(false);
+                            break;
+                    case "e6":e6.setEnabled(false);
+                            break;
+                    case "e7":e7.setEnabled(false);
+                            break;
+                    case "e8":e8.setEnabled(false);
+                            break;
+                    case "f1":f1.setEnabled(false);
+                            break;
+                    case "f2":f2.setEnabled(false);
+                            break;
+                    case "f3":f3.setEnabled(false);
+                            break;
+                    case "f4":f4.setEnabled(false);
+                            break;
+                    case "f5":f5.setEnabled(false);
+                            break;
+                    case "f6":f6.setEnabled(false);
+                            break;
+                    case "f7":f7.setEnabled(false);
+                            break;
+                    case "f8":f8.setEnabled(false);
+                            break;
+                    case "g1":g1.setEnabled(false);
+                            break;
+                    case "g2":g2.setEnabled(false);
+                            break;
+                    case "g3":g3.setEnabled(false);
+                            break;
+                    case "g4":g4.setEnabled(false);
+                            break;
+                    case "g5":g5.setEnabled(false);
+                            break;
+                    case "g6":g6.setEnabled(false);
+                            break;
+                    case "g7":g7.setEnabled(false);
+                            break;
+                    case "g8":g8.setEnabled(false);
+                            break;
+                    case "h1":h1.setEnabled(false);
+                            break;
+                    case "h2":h2.setEnabled(false);
+                            break;
+                    case "h3":h3.setEnabled(false);
+                            break;
+                    case "h4":h4.setEnabled(false);
+                            break;
+                    case "h5":h5.setEnabled(false);
+                            break;
+                    case "h6":h6.setEnabled(false);
+                            break;
+                    case "h7":h7.setEnabled(false);
+                            break;
+                    case "h8":h8.setEnabled(false);
+                            break;                     
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,"load buttons");
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_formWindowOpened
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formComponentShown
+
+    private void a2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_a2ActionPerformed
+
+    private void a1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_a1ActionPerformed
+
+    private void time_slotItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_time_slotItemStateChanged
+        // TODO add your handling code here:
+        a1.setEnabled(true);
+        a2.setEnabled(true);
+        a3.setEnabled(true);
+        a4.setEnabled(true);
+        a5.setEnabled(true);
+        a6.setEnabled(true);
+        a7.setEnabled(true);
+        a8.setEnabled(true);
+        b1.setEnabled(true);
+        b2.setEnabled(true);
+        b3.setEnabled(true);
+        b4.setEnabled(true);
+        b5.setEnabled(true);
+        b6.setEnabled(true);
+        b7.setEnabled(true);
+        b8.setEnabled(true);
+        c1.setEnabled(true);
+        c2.setEnabled(true);
+        c3.setEnabled(true);
+        c4.setEnabled(true);
+        c5.setEnabled(true);
+        c6.setEnabled(true);
+        c7.setEnabled(true);
+        c8.setEnabled(true);
+        d1.setEnabled(true);
+        d2.setEnabled(true);
+        d3.setEnabled(true);
+        d4.setEnabled(true);
+        d5.setEnabled(true);
+        d6.setEnabled(true);
+        d7.setEnabled(true);
+        d8.setEnabled(true);
+        e1.setEnabled(true);
+        e2.setEnabled(true);
+        e3.setEnabled(true);
+        e4.setEnabled(true);
+        e5.setEnabled(true);
+        e6.setEnabled(true);
+        e7.setEnabled(true);
+        e8.setEnabled(true);
+        f1.setEnabled(true);
+        f2.setEnabled(true);
+        f3.setEnabled(true);
+        f4.setEnabled(true);
+        f5.setEnabled(true);
+        f6.setEnabled(true);
+        f7.setEnabled(true);
+        f8.setEnabled(true);
+        g1.setEnabled(true);
+        g2.setEnabled(true);
+        g3.setEnabled(true);
+        g4.setEnabled(true);
+        g5.setEnabled(true);
+        g6.setEnabled(true);
+        g7.setEnabled(true);
+        g8.setEnabled(true);
+        h1.setEnabled(true);
+        h2.setEnabled(true);
+        h3.setEnabled(true);
+        h4.setEnabled(true);
+        h5.setEnabled(true);
+        h6.setEnabled(true);
+        h7.setEnabled(true);
+        h8.setEnabled(true);
+        String sql="select * from ticket where theatreid=? and challid=? and time=? and date=?";
+        try
+        {
+            pst = conn.prepareStatement(sql);
+            pst.setString(1,"1");
+            pst.setString(2,"1");
+            String temp=(String) ds.getSelectedItem();
+            pst.setString(3,temp);
+            pst.setString(4,"2018-10-01");
+            rs = pst.executeQuery();
+            String bseat;
+            while (rs.next())
+            {
+                bseat=rs.getNString("seatno");
+                switch(bseat)
+                {
+                    case "a1":a1.setEnabled(false);
+                            break;
+                    case "a2":a2.setEnabled(false);
+                            break;
+                    case "a3":a3.setEnabled(false);
+                            break;
+                    case "a4":a4.setEnabled(false);
+                            break;
+                    case "a5":a5.setEnabled(false);
+                            break;
+                    case "a6":a6.setEnabled(false);
+                            break;
+                    case "a7":a7.setEnabled(false);
+                            break;
+                    case "a8":a8.setEnabled(false);
+                            break;
+                    case "b1":b1.setEnabled(false);
+                            break;
+                    case "b2":b2.setEnabled(false);
+                            break;
+                    case "b3":b3.setEnabled(false);
+                            break;
+                    case "b4":b4.setEnabled(false);
+                            break;
+                    case "b5":b5.setEnabled(false);
+                            break;
+                    case "b6":b6.setEnabled(false);
+                            break;
+                    case "b7":b7.setEnabled(false);
+                            break;
+                    case "b8":b8.setEnabled(false);
+                            break;
+                    case "c1":c1.setEnabled(false);
+                            break;
+                    case "c2":c2.setEnabled(false);
+                            break;
+                    case "c3":c3.setEnabled(false);
+                            break;
+                    case "c4":c4.setEnabled(false);
+                            break;
+                    case "c5":c5.setEnabled(false);
+                            break;
+                    case "c6":c6.setEnabled(false);
+                            break;
+                    case "c7":c7.setEnabled(false);
+                            break;
+                    case "c8":c8.setEnabled(false);
+                            break;
+                    case "d1":d1.setEnabled(false);
+                            break;
+                    case "d2":d2.setEnabled(false);
+                            break;
+                    case "d3":d3.setEnabled(false);
+                            break;
+                    case "d4":d4.setEnabled(false);
+                            break;
+                    case "d5":d5.setEnabled(false);
+                            break;
+                    case "d6":d6.setEnabled(false);
+                            break;
+                    case "d7":d7.setEnabled(false);
+                            break;
+                    case "d8":d8.setEnabled(false);
+                            break;
+                    case "e1":e1.setEnabled(false);
+                            break;
+                    case "e2":e2.setEnabled(false);
+                            break;
+                    case "e3":e3.setEnabled(false);
+                            break;
+                    case "e4":e4.setEnabled(false);
+                            break;
+                    case "e5":e5.setEnabled(false);
+                            break;
+                    case "e6":e6.setEnabled(false);
+                            break;
+                    case "e7":e7.setEnabled(false);
+                            break;
+                    case "e8":e8.setEnabled(false);
+                            break;
+                    case "f1":f1.setEnabled(false);
+                            break;
+                    case "f2":f2.setEnabled(false);
+                            break;
+                    case "f3":f3.setEnabled(false);
+                            break;
+                    case "f4":f4.setEnabled(false);
+                            break;
+                    case "f5":f5.setEnabled(false);
+                            break;
+                    case "f6":f6.setEnabled(false);
+                            break;
+                    case "f7":f7.setEnabled(false);
+                            break;
+                    case "f8":f8.setEnabled(false);
+                            break;
+                    case "g1":g1.setEnabled(false);
+                            break;
+                    case "g2":g2.setEnabled(false);
+                            break;
+                    case "g3":g3.setEnabled(false);
+                            break;
+                    case "g4":g4.setEnabled(false);
+                            break;
+                    case "g5":g5.setEnabled(false);
+                            break;
+                    case "g6":g6.setEnabled(false);
+                            break;
+                    case "g7":g7.setEnabled(false);
+                            break;
+                    case "g8":g8.setEnabled(false);
+                            break;
+                    case "h1":h1.setEnabled(false);
+                            break;
+                    case "h2":h2.setEnabled(false);
+                            break;
+                    case "h3":h3.setEnabled(false);
+                            break;
+                    case "h4":h4.setEnabled(false);
+                            break;
+                    case "h5":h5.setEnabled(false);
+                            break;
+                    case "h6":h6.setEnabled(false);
+                            break;
+                    case "h7":h7.setEnabled(false);
+                            break;
+                    case "h8":h8.setEnabled(false);
+                            break;                     
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_time_slotItemStateChanged
 
     /**
      * @param args the command line arguments
