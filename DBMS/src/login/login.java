@@ -325,14 +325,14 @@ public class login extends javax.swing.JFrame {
 
     private void register_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_buttonActionPerformed
         // TODO add your handling code here:
-        /* screening s=new screening();
+        screening s=new screening();
         s.setVisible(true);
         this.setVisible(false);
-        this.dispose ()*/;
-       register r=new register(this);
-       r.setVisible(true);
-       this.setVisible(false);
-       this.dispose();
+        this.dispose();
+//        register r=new register(this);
+//        r.setVisible(true);
+//        this.setVisible(false);
+//        this.dispose();
     }//GEN-LAST:event_register_buttonActionPerformed
 
     private void username_txtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_username_txtKeyPressed

@@ -11,13 +11,8 @@ import java.awt.event.ComponentListener;
 import java.awt.event.KeyEvent;
 import static java.awt.event.KeyEvent.*;
 import java.awt.event.WindowListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 import java.sql.*;
 import java.time.LocalDateTime;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 /**
@@ -44,7 +39,6 @@ public class mainpage extends javax.swing.JFrame {
         return null;
     }
     JPanel a=new javax.swing.JPanel();
-    JPanel b=new javax.swing.JPanel();
     JButton s[]=new JButton[100];
     Connection conn = null;
     ResultSet rs = null;
@@ -98,7 +92,7 @@ public class mainpage extends javax.swing.JFrame {
         logout_button = new javax.swing.JButton();
         screen = new javax.swing.JScrollPane();
         go_button = new javax.swing.JButton();
-        movpic = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
         location_combo = new javax.swing.JComboBox<>();
         date_choose = new com.toedter.calendar.JDateChooser();
 
@@ -341,7 +335,7 @@ public class mainpage extends javax.swing.JFrame {
             }
         });
 
-        movpic.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         location_combo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
@@ -369,7 +363,7 @@ public class mainpage extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(screen, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
-                            .addComponent(movpic, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(logout_button)))
@@ -391,12 +385,12 @@ public class mainpage extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(logout_button)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(movpic)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(go_button)
-                            .addComponent(date_choose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(location_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(location_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(date_choose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(screen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -473,7 +467,6 @@ public class mainpage extends javax.swing.JFrame {
        // JPanel a=new javax.swing.JPanel();
 	//a.setLayout(new BoxLayout(a,BoxLayout.Y_AXIS));
         a.setLayout(new BoxLayout(a, BoxLayout.Y_AXIS));
-        b.setLayout(new BoxLayout(b, BoxLayout.X_AXIS));
 //        JButton b = new javax.swing.JButton("Hello world!");
 //        JButton c = new javax.swing.JButton("Hello world!");
 //        JButton d = new javax.swing.JButton("Hello world!");
@@ -574,38 +567,7 @@ public class mainpage extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }        // TODO add your handling code here:
-        String ik="1";
-        JButton d = new javax.swing.JButton();
-        JButton e = new javax.swing.JButton();
-        JButton f = new javax.swing.JButton();
-        JButton g = new javax.swing.JButton();
-        JButton h = new javax.swing.JButton();
-        JButton i = new javax.swing.JButton();
-        d.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/"+ik+".jpg")));
-        e.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/TheNunPoster.jpg")));
-        f.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/TheNunPoster.jpg")));
-        g.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/TheNunPoster.jpg")));
-        h.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/TheNunPoster.jpg")));
-        i.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/TheNunPoster.jpg")));
-        b.add((Component)d);
-        b.add((Component)e);
-        b.add((Component)f);
-        b.add((Component)g);
-        b.add((Component)h);
-        b.add((Component)i);
         
-        b.setAutoscrolls(true);
-        //JScrollPane sp=new javax.swing.JScrollPane(a);
-        //screen.add(sp,0);
-        //screen.setViewportView(a);
-        movpic.getViewport().add(b);
-        movpic.repaint();
-        movpic.updateUI();
-
-//thenun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/TheNunPoster.jpg")));
-        
-
-//thenun.setIcon(abc);
     }//GEN-LAST:event_formWindowOpened
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
@@ -767,12 +729,12 @@ public class mainpage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField lname_txt;
     private javax.swing.JComboBox<String> location_combo;
     private javax.swing.JButton logout_button;
     private javax.swing.JTextField mail_txt;
-    private javax.swing.JScrollPane movpic;
     private javax.swing.JPasswordField password_txt;
     private javax.swing.JPasswordField repass_txt;
     public javax.swing.JScrollPane screen;
