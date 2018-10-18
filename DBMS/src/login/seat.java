@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.*;
 
@@ -1024,35 +1025,158 @@ public class seat extends javax.swing.JFrame {
         // if pressed yes to confirm. that is the first button. that is button number 0.
         if(cnf==0)
         {
-            JOptionPane.showMessageDialog(null, "Confirmed booking");
+            String findmail="select emailid from customer where username=?";
+            String receiver;
             try
             {
-                pst = conn.prepareStatement(set2);
-                pst.execute();
+                pst=conn.prepareStatement(findmail);
+                pst.setString(1,username);
+                rs=pst.executeQuery();
+                if(rs.next())
+                {
+                    receiver=rs.getNString(1);
+                }
             }
             catch(Exception e)
             {
                 JOptionPane.showMessageDialog(null,e);
             }
-            String abc="update screening set noseatbooked=noseatbooked+"+count+" where theatreid=? and challid=? and time=? and date=?";
+            ArrayList t=new ArrayList();
+            ArrayList d=new ArrayList();
+            String times="select distinct(time) from ticket where date=? and username=? order by time;";
             try
             {
-                pst = conn.prepareStatement(abc);
-                pst.setString(1,"1");
-                pst.setString(2,"1");
-                pst.setString(3,(String) ds.getSelectedItem());
-                pst.setString(4,"2018-10-01");
-                pst.execute();
+                pst=conn.prepareStatement(times);
+                pst.setString(1,"2018-10-01");
+                pst.setString(2,username);
+                rs=pst.executeQuery();
+                while(rs.next())
+                {
+                t.add(rs.getInt(1));
+                }
             }
             catch(Exception e)
             {
                 JOptionPane.showMessageDialog(null,e);
             }
-//            SendEmail s=new SendEmail();
-//            s.booked(username);
-            mainp.setVisible(true);
-            this.hide();
-            this.dispose();
+            String duration="select m.duration from movie m inner join screening s on m.movieid=s.movieid inner join (select theatreid,challid,time,date from ticket where date=? and username=? group by theatreid,challid,time,date order by time) as t on (s.theatreid,s.challid,s.time,s.date)=(t.theatreid,t.challid,t.time,t.date);";
+            try
+            {
+                pst=conn.prepareStatement(duration);
+                pst.setString(1,"2018-10-01");
+                pst.setString(2,username);
+                rs=pst.executeQuery();
+                while(rs.next())
+                {
+                d.add(rs.getInt(1));
+                }
+                System.out.println(d.size());
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null,e);
+            }
+            int endtime;
+            int flag=0;
+            for (int i=0;i<t.size();i++)
+            {
+                endtime=(int)t.get(i)+(int)d.get(i);
+                for(int j=i+1;j<t.size();j++)
+                {
+                    if (endtime>(int)t.get(j))
+                    {
+                        flag=1;
+                    }
+                }
+            }
+            if(flag==1)
+            {
+                int cn=JOptionPane.showConfirmDialog(null, "There is a clash with previous booking. Do you still want to confirm this movie ticket?\nCost = "+(cost*count));
+                if(cn==0)
+                {
+//                            JOptionPane.showMessageDialog(null,"Clash");
+                    SendEmail s=new SendEmail();
+                    JOptionPane.showMessageDialog(null, "Confirmed booking");
+                    try
+                    {
+                        pst = conn.prepareStatement(set2);
+                        pst.execute();
+                    }
+                    catch(Exception e)
+                    {
+                        JOptionPane.showMessageDialog(null,e);
+                    }
+                    String abc="update screening set noseatbooked=noseatbooked+"+count+" where theatreid=? and challid=? and time=? and date=?";
+                    try
+                    {
+                        pst = conn.prepareStatement(abc);
+                        pst.setString(1,"1");
+                        pst.setString(2,"1");
+                        pst.setString(3,(String) ds.getSelectedItem());
+                        pst.setString(4,"2018-10-01");
+                        pst.execute();
+                    }
+                    catch(Exception e)
+                    {
+                        JOptionPane.showMessageDialog(null,e);
+                    }
+        //            SendEmail s=new SendEmail();
+        //            s.booked(username);
+                    mainp.setVisible(true);
+                    this.hide();
+                    this.dispose();
+                }
+                else
+                {
+                    try
+                    {
+                        pst = conn.prepareStatement(roll);
+                        pst.execute();
+                    }
+                    catch(Exception e)
+                    {
+                        JOptionPane.showMessageDialog(null,"rollingback");
+                        JOptionPane.showMessageDialog(null,e);
+                    }
+                }
+
+                //send data of the new ticket which is clashing with the old ticket.
+                //s.alert(receiver,username);
+            }
+            else
+            {
+    //                            JOptionPane.showMessageDialog(null,"Clash");
+                SendEmail s=new SendEmail();
+                JOptionPane.showMessageDialog(null, "Confirmed booking");
+                try
+                {
+                    pst = conn.prepareStatement(set2);
+                    pst.execute();
+                }
+                catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(null,e);
+                }
+                String abc="update screening set noseatbooked=noseatbooked+"+count+" where theatreid=? and challid=? and time=? and date=?";
+                try
+                {
+                    pst = conn.prepareStatement(abc);
+                    pst.setString(1,"1");
+                    pst.setString(2,"1");
+                    pst.setString(3,(String) ds.getSelectedItem());
+                    pst.setString(4,"2018-10-01");
+                    pst.execute();
+                }
+                catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(null,e);
+                }
+    //            SendEmail s=new SendEmail();
+    //            s.booked(username);
+                mainp.setVisible(true);
+                this.hide();
+                this.dispose();
+            }
         }
         else
         {

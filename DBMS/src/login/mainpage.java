@@ -92,7 +92,7 @@ public class mainpage extends javax.swing.JFrame {
         logout_button = new javax.swing.JButton();
         screen = new javax.swing.JScrollPane();
         go_button = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        movie = new javax.swing.JScrollPane();
         location_combo = new javax.swing.JComboBox<>();
         date_choose = new com.toedter.calendar.JDateChooser();
 
@@ -335,7 +335,7 @@ public class mainpage extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        movie.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         location_combo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
@@ -363,7 +363,7 @@ public class mainpage extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(screen, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(movie, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(logout_button)))
@@ -385,12 +385,12 @@ public class mainpage extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(logout_button)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(movie, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(go_button)
-                            .addComponent(location_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(date_choose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(date_choose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(location_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(screen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -510,6 +510,7 @@ public class mainpage extends javax.swing.JFrame {
         java.util.Date dat=new Date(System.currentTimeMillis());
         //System.out.println(dat);
         date_choose.setDate(dat);
+        date_choose.setMinSelectableDate(dat);
         String loc="select distinct(chlocation) from cinemahall;";
         try
         {
@@ -608,7 +609,7 @@ public class mainpage extends javax.swing.JFrame {
 //        javaDate date = new Date();  
 //        //System.out.println(formatter.format(date));  
 //        date_choose.set'
-        
+        //Date d=date_choose.getDate();
         java.util.Date date=date_choose.getDate();
         String dd=Integer.toString(date.getDate());
         String mm=Integer.toString(date.getMonth()+1);
@@ -729,12 +730,12 @@ public class mainpage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField lname_txt;
     private javax.swing.JComboBox<String> location_combo;
     private javax.swing.JButton logout_button;
     private javax.swing.JTextField mail_txt;
+    private javax.swing.JScrollPane movie;
     private javax.swing.JPasswordField password_txt;
     private javax.swing.JPasswordField repass_txt;
     public javax.swing.JScrollPane screen;

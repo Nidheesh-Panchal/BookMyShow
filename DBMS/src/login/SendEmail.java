@@ -110,8 +110,7 @@ public void registered(String receiver,String use) {
 //        
 //        Message message = new MimeMessage(session);
 //        message.setFrom(new InternetAddress(username));//ur email
-//        message.setRecipients(Message.RecipientType.TO,
-//        InternetAddress.parse(receiver));//u will send to
+//        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(receiver));//u will send to
 //        message.setSubject("Ticket booked");    
 //        message.setText(use + "Your ticket information is as follows\n");
 //       Transport.send(message);
