@@ -28,7 +28,7 @@ public class seat extends javax.swing.JFrame {
     DefaultComboBoxModel ds=new DefaultComboBoxModel();
     public static Connection connecrDb() {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bms", "root", "root");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bms", "root", "password");
             return conn;
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
