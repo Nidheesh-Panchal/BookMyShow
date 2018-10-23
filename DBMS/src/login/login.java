@@ -301,7 +301,7 @@ public class login extends javax.swing.JFrame {
                 if (rs.getNString("password").equals(pass))
                 {
                     String username=username_txt.getText();
-                    JOptionPane.showMessageDialog(null, "username and password are correct");                   
+                    //JOptionPane.showMessageDialog(null, "username and password are correct");                   
                     password_txt.setText("");
                     username_txt.setText("");
                     mainpage mainp=new mainpage(username,this);
@@ -325,10 +325,14 @@ public class login extends javax.swing.JFrame {
 
     private void register_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_buttonActionPerformed
         // TODO add your handling code here:
-        register r=new register();
-        r.setVisible(true);
-        password_txt.setText("");
-        username_txt.setText("");
+        screening s=new screening();
+        s.setVisible(true);
+        this.setVisible(false);
+        this.dispose();
+//        register r=new register(this);
+//        r.setVisible(true);
+//        this.setVisible(false);
+//        this.dispose();
     }//GEN-LAST:event_register_buttonActionPerformed
 
     private void username_txtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_username_txtKeyPressed
