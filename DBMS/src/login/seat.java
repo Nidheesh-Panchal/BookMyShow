@@ -1000,6 +1000,7 @@ public class seat extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(null,e);
         }
+        //mainp.
         int cost=0;
         String c="select cost from screening where theatreid=? and challid=? and time=? and date=?";
         try
@@ -1043,7 +1044,7 @@ public class seat extends javax.swing.JFrame {
             }
             ArrayList t=new ArrayList();
             ArrayList d=new ArrayList();
-            String times="select distinct(time) from ticket where date=? and username=? order by time;";
+            String times="select t.time,m.movieid from ticket t inner join screening s on (s.theatreid,s.challid,s.time,s.date)=(t.theatreid,t.challid,t.time,t.date) inner join movie m on m.movieid=s.movieid where t.date=? and t.username=? group by t.time,m.movieid order by t.time;";
             try
             {
                 pst=conn.prepareStatement(times);
@@ -1068,7 +1069,7 @@ public class seat extends javax.swing.JFrame {
                 rs=pst.executeQuery();
                 while(rs.next())
                 {
-                d.add(rs.getInt(1));
+                    d.add(rs.getInt(1));
                 }
                 System.out.println(d.size());
             }
@@ -1080,7 +1081,8 @@ public class seat extends javax.swing.JFrame {
             int flag=0;
             for (int i=0;i<t.size();i++)
             {
-                endtime=(int)t.get(i)+(int)d.get(i);
+                endtime=(int)t.get(i)+((int)((int)d.get(i)/60))*100;
+                endtime+=(int)d.get(i)%60;
                 for(int j=i+1;j<t.size();j++)
                 {
                     if (endtime>(int)t.get(j))
@@ -1147,6 +1149,8 @@ public class seat extends javax.swing.JFrame {
             {
     //                            JOptionPane.showMessageDialog(null,"Clash");
                 SendEmail s=new SendEmail();
+                //mainp.
+               // s.booking(receiver, c, c, endtime, username, HEIGHT, roll);
                 JOptionPane.showMessageDialog(null, "Confirmed booking");
                 try
                 {
