@@ -9,7 +9,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.*;
 
@@ -27,6 +30,9 @@ public class seat extends javax.swing.JFrame {
     ResultSet rs = null;
     PreparedStatement pst = null;
     DefaultComboBoxModel ds=new DefaultComboBoxModel();
+    DefaultComboBoxModel threat=new DefaultComboBoxModel();
+    String receiver;
+    String theatre;
     public static Connection connecrDb() {
         try {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bms", "root", "root");
@@ -582,7 +588,7 @@ public class seat extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(back_button)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -606,7 +612,7 @@ public class seat extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
                         .addComponent(back_button)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(6, 6, 6)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(book_button)
@@ -626,19 +632,7 @@ public class seat extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
-        String set2="set autocommit=1;";
-        try
-        {
-            pst = conn.prepareStatement(set2);
-            pst.execute();
-        }
-        catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(null,e);
-        }
-        mainp.setVisible(true);
-        this.setVisible(false);
-        this.dispose();
+        
     }//GEN-LAST:event_formWindowClosed
 
     private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
@@ -652,348 +646,337 @@ public class seat extends javax.swing.JFrame {
         // TODO add your handling code here:
         //use rollback to delete data if there is no booking.
         // username,theatreid,challid,time,date,seatno
-        String sql="insert into ticket values (?,?,?,?,?,?);";
-        String set1="set autocommit=0;";
-        String set2="set autocommit=1;";
-        String roll="rollback;";
-        try
-        {
-            pst = conn.prepareStatement(set1);
-            pst.execute();
-        }
-        catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(null,e);
-        }
+        ArrayList se=new ArrayList();
+//        String sql="insert into ticket values (?,?,?,?,?,?);";
         int count=0;
         try
         {
-            pst = conn.prepareStatement(sql);
-            pst.setString(1,username);
-            pst.setString(2,"1");
-            pst.setString(3,"1");
-            pst.setString(4,(String) ds.getSelectedItem());
-            pst.setString(5,"2018-10-01");
+            //pst = conn.prepareStatement(sql);
+//            pst.setString(1,username);
+//            //pst.setString(2, (String) threat.getSelectedItem());
+//            pst.setString(3,Integer.toString(mainp.hallid));
+//            pst.setString(4,(String) ds.getSelectedItem());
+//            pst.setString(5,mainp.dat);
+            
             //rs = pst.executeQuery();            
             if(a1.isSelected())
             {
-                pst.setString(6,"a1");
-                pst.execute(); count++;
+                se.add("a1");
             }
             if(a2.isSelected())
             {
-                pst.setString(6,"a2");
-                pst.execute(); count++;
+                se.add("a2");
+                
             }
             if(a3.isSelected())
             {
-                pst.setString(6,"a3");
-                pst.execute(); count++;
+                se.add("a3");
+                
             }
             if(a4.isSelected())
             {
-                pst.setString(6,"a4");
-                pst.execute(); count++;
+                se.add("a4");
+                
             }
             if(a5.isSelected())
             {
-                pst.setString(6,"a5");
-                pst.execute(); count++;
+                se.add("a5");
+                
             }
             if(a6.isSelected())
             {
-                pst.setString(6,"a6");
-                pst.execute(); count++;
+                se.add("a6");
+                
             }
             if(a7.isSelected())
             {
-                pst.setString(6,"a7");
-                pst.execute(); count++;
+                se.add("a7");
+                
             }
             if(a8.isSelected())
             {
-                pst.setString(6,"a8");
-                pst.execute(); count++;
+                se.add("a8");
+                
             }
             if(b1.isSelected())
             {
-                pst.setString(6,"b1");
-                pst.execute(); count++;
+                se.add("b1");
+                
             }
             if(b2.isSelected())
             {
-                pst.setString(6,"b2");
-                pst.execute(); count++;
+                se.add("b2");
+                
             }
             if(b3.isSelected())
             {
-                pst.setString(6,"b3");
-                pst.execute(); count++;
+                se.add("b3");
+                
             }
             if(b4.isSelected())
             {
-                pst.setString(6,"b4");
-                pst.execute(); count++;
+                se.add("b4");
+                
             }
             if(b5.isSelected())
             {
-                pst.setString(6,"b5");
-                pst.execute(); count++;
+                se.add("b5");
+                
             }
             if(b6.isSelected())
             {
-                pst.setString(6,"b6");
-                pst.execute(); count++;
+                se.add("b6");
+                
             }
             if(b7.isSelected())
             {
-                pst.setString(6,"b7");
-                pst.execute(); count++;
+                se.add("b7");
+                
             }
             if(b8.isSelected())
             {
-                pst.setString(6,"b8");
-                pst.execute(); count++;
+                se.add("b8");
+                
             }
             if(c1.isSelected())
             {
-                pst.setString(6,"c1");
-                pst.execute(); count++;
+                se.add("c1");
+                
             }
             if(c2.isSelected())
             {
-                pst.setString(6,"c2");
-                pst.execute(); count++;
+                se.add("c2");
+                
             }
             if(c3.isSelected())
             {
-                pst.setString(6,"c3");
-                pst.execute(); count++;
+                se.add("c3");
+                
             }
             if(c4.isSelected())
             {
-                pst.setString(6,"c4");
-                pst.execute(); count++;
+                se.add("c4");
+                
             }
             if(c5.isSelected())
             {
-                pst.setString(6,"c5");
-                pst.execute(); count++;
+                se.add("c5");
+                
             }
             if(c6.isSelected())
             {
-                pst.setString(6,"c6");
-                pst.execute(); count++;
+                se.add("c6");
+                
             }
             if(c7.isSelected())
             {
-                pst.setString(6,"c7");
-                pst.execute(); count++;
+                se.add("c7");
+                
             }
             if(c8.isSelected())
             {
-                pst.setString(6,"c8");
-                pst.execute(); count++;
+                se.add("c8");
+                
             }
             if(d1.isSelected())
             {
-                pst.setString(6,"d1");
-                pst.execute(); count++;
+                se.add("d1");
+                
             }
             if(d2.isSelected())
             {
-                pst.setString(6,"d2");
-                pst.execute(); count++;
+                se.add("d2");
+                
             }
             if(d3.isSelected())
             {
-                pst.setString(6,"d3");
-                pst.execute(); count++;
+                se.add("d3");
+                
             }
             if(d4.isSelected())
             {
-                pst.setString(6,"d4");
-                pst.execute(); count++;
+                se.add("d4");
+                
             }
             if(d5.isSelected())
             {
-                pst.setString(6,"d5");
-                pst.execute(); count++;
+                se.add("d5");
+                
             }
             if(d6.isSelected())
             {
-                pst.setString(6,"d6");
-                pst.execute(); count++;
+                se.add("d6");
+                
             }
             if(d7.isSelected())
             {
-                pst.setString(6,"d7");
-                pst.execute(); count++;
+                se.add("d7");
+                
             }
             if(d8.isSelected())
             {
-                pst.setString(6,"d8");
-                pst.execute(); count++;
+                se.add("d8");
+                
             }
             if(e1.isSelected())
             {
-                pst.setString(6,"e1");
-                pst.execute(); count++;
+                se.add("e1");
+                
             }
             if(e2.isSelected())
             {
-                pst.setString(6,"e2");
-                pst.execute(); count++;
+                se.add("e2");
+                
             }
             if(e3.isSelected())
             {
-                pst.setString(6,"e3");
-                pst.execute(); count++;
+                se.add("e3");
+                
             }
             if(e4.isSelected())
             {
-                pst.setString(6,"e4");
-                pst.execute(); count++;
+                se.add("e4");
+                
             }
             if(e5.isSelected())
             {
-                pst.setString(6,"e5");
-                pst.execute(); count++;
+                se.add("e5");
+                
             }
             if(e6.isSelected())
             {
-                pst.setString(6,"e6");
-                pst.execute(); count++;
+                se.add("e6");
+                
             }
             if(e7.isSelected())
             {
-                pst.setString(6,"e7");
-                pst.execute(); count++;
+                se.add("e7");
+                
             }
             if(e8.isSelected())
             {
-                pst.setString(6,"e8");
-                pst.execute(); count++;
+                se.add("e8");
+                
             }
             if(f1.isSelected())
             {
-                pst.setString(6,"f1");
-                pst.execute(); count++;
+                se.add("f1");
+                
             }
             if(f2.isSelected())
             {
-                pst.setString(6,"f2");
-                pst.execute(); count++;
+                se.add("f2");
+                
             }
             if(f3.isSelected())
             {
-                pst.setString(6,"f3");
-                pst.execute(); count++;
+                se.add("f3");
+                
             }
             if(f4.isSelected())
             {
-                pst.setString(6,"f4");
-                pst.execute(); count++;
+                se.add("f4");
+                
             }
             if(f5.isSelected())
             {
-                pst.setString(6,"f5");
-                pst.execute(); count++;
+                se.add("f5");
+                
             }
             if(f6.isSelected())
             {
-                pst.setString(6,"f6");
-                pst.execute(); count++;
+                se.add("f6");
+                
             }
             if(f7.isSelected())
             {
-                pst.setString(6,"f7");
-                pst.execute(); count++;
+                se.add("f7");
+                
             }
             if(f8.isSelected())
             {
-                pst.setString(6,"f8");
-                pst.execute(); count++;
+                se.add("f8");
+                
             }
             if(g1.isSelected())
             {
-                pst.setString(6,"g1");
-                pst.execute(); count++;
+                se.add("g1");
+                
             }
             if(g2.isSelected())
             {
-                pst.setString(6,"g2");
-                pst.execute(); count++;
+                se.add("g2");
+                
             }
             if(g3.isSelected())
             {
-                pst.setString(6,"g3");
-                pst.execute(); count++;
+                se.add("g3");
+                
             }
             if(g4.isSelected())
             {
-                pst.setString(6,"g4");
-                pst.execute(); count++;
+                se.add("g4");
+                
             }
             if(g5.isSelected())
             {
-                pst.setString(6,"g5");
-                pst.execute(); count++;
+                se.add("g5");
+                
             }
             if(g6.isSelected())
             {
-                pst.setString(6,"g6");
-                pst.execute(); count++;
+                se.add("g6");
+                
             }
             if(g7.isSelected())
             {
-                pst.setString(6,"g7");
-                pst.execute(); count++;
+                se.add("g7");
+                
             }
             if(g8.isSelected())
             {
-                pst.setString(6,"g8");
-                pst.execute(); count++;
+                se.add("g8");
+                
             }
             if(h1.isSelected())
             {
-                pst.setString(6,"h1");
-                pst.execute(); count++;
+                se.add("h1");
+                
             }
             if(h2.isSelected())
             {
-                pst.setString(6,"h2");
-                pst.execute(); count++;
+                se.add("h2");
+                
             }
             if(h3.isSelected())
             {
-                pst.setString(6,"h3");
-                pst.execute(); count++;
+                se.add("h3");
+                
             }
             if(h4.isSelected())
             {
-                pst.setString(6,"h4");
-                pst.execute(); count++;
+                se.add("h4");
+                
             }
             if(h5.isSelected())
             {
-                pst.setString(6,"h5");
-                pst.execute(); count++;
+                se.add("h5");
+                
             }
             if(h6.isSelected())
             {
-                pst.setString(6,"h6");
-                pst.execute(); count++;
+                se.add("h6");
+                
             }
             if(h7.isSelected())
             {
-                pst.setString(6,"h7");
-                pst.execute(); count++;
+                se.add("h7");
+                
             }
             if(h8.isSelected())
             {
-                pst.setString(6,"h8");
-                pst.execute(); count++;
+                se.add("h8");
+                
             }
         }
         catch(Exception e)
@@ -1001,15 +984,34 @@ public class seat extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,e);
         }
         //mainp.
+        String sql="select theatreid from screening where movieid=? and challid=? and time=? and date=?;";
+        try
+        {
+            pst = conn.prepareStatement(sql);
+            pst.setString(1,Integer.toString(mainp.movieno));
+            pst.setString(2,Integer.toString(mainp.hallid));
+            pst.setString(3,(String) ds.getSelectedItem());
+            pst.setString(4,mainp.dat);
+            rs=pst.executeQuery();
+            if(rs.next())
+            {
+                theatre=Integer.toString(rs.getInt(1));
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,e);
+        }
         int cost=0;
         String c="select cost from screening where theatreid=? and challid=? and time=? and date=?";
         try
         {
+            //JOptionPane.showMessageDialog(null,"cost");
             pst = conn.prepareStatement(c);
-            pst.setString(1,"1");
-            pst.setString(2,"1");
+            pst.setString(1,theatre);
+            pst.setString(2,Integer.toString(mainp.hallid));
             pst.setString(3,(String) ds.getSelectedItem());
-            pst.setString(4,"2018-10-01");
+            pst.setString(4,mainp.dat);
             rs=pst.executeQuery();
             if(rs.next())
             {
@@ -1021,13 +1023,8 @@ public class seat extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,e);
         }
         
-        
-        int cnf=JOptionPane.showConfirmDialog(null, "Confirm this movie ticket?\nCost = "+(cost*count));
-        // if pressed yes to confirm. that is the first button. that is button number 0.
-        if(cnf==0)
-        {
-            String findmail="select emailid from customer where username=?";
-            String receiver;
+        //String receiver;
+        String findmail="select emailid from customer where username=?";
             try
             {
                 pst=conn.prepareStatement(findmail);
@@ -1042,13 +1039,18 @@ public class seat extends javax.swing.JFrame {
             {
                 JOptionPane.showMessageDialog(null,e);
             }
+        
+        int cnf=JOptionPane.showConfirmDialog(null, "Confirm this movie ticket?\nCost = "+(cost*se.size()));
+        // if pressed yes to confirm. that is the first button. that is button number 0.
+        if(cnf==0)
+        {
             ArrayList t=new ArrayList();
             ArrayList d=new ArrayList();
             String times="select t.time,m.movieid from ticket t inner join screening s on (s.theatreid,s.challid,s.time,s.date)=(t.theatreid,t.challid,t.time,t.date) inner join movie m on m.movieid=s.movieid where t.date=? and t.username=? group by t.time,m.movieid order by t.time;";
             try
             {
                 pst=conn.prepareStatement(times);
-                pst.setString(1,"2018-10-01");
+                pst.setString(1,mainp.dat);
                 pst.setString(2,username);
                 rs=pst.executeQuery();
                 while(rs.next())
@@ -1064,7 +1066,7 @@ public class seat extends javax.swing.JFrame {
             try
             {
                 pst=conn.prepareStatement(duration);
-                pst.setString(1,"2018-10-01");
+                pst.setString(1,mainp.dat);
                 pst.setString(2,username);
                 rs=pst.executeQuery();
                 while(rs.next())
@@ -1096,114 +1098,82 @@ public class seat extends javax.swing.JFrame {
                 int cn=JOptionPane.showConfirmDialog(null, "There is a clash with previous booking. Do you still want to confirm this movie ticket?\nCost = "+(cost*count));
                 if(cn==0)
                 {
-//                            JOptionPane.showMessageDialog(null,"Clash");
-                    SendEmail s=new SendEmail();
-                    JOptionPane.showMessageDialog(null, "Confirmed booking");
-                    try
-                    {
-                        pst = conn.prepareStatement(set2);
-                        pst.execute();
-                    }
-                    catch(Exception e)
-                    {
-                        JOptionPane.showMessageDialog(null,e);
-                    }
-                    String abc="update screening set noseatbooked=noseatbooked+"+count+" where theatreid=? and challid=? and time=? and date=?";
-                    try
-                    {
-                        pst = conn.prepareStatement(abc);
-                        pst.setString(1,"1");
-                        pst.setString(2,"1");
-                        pst.setString(3,(String) ds.getSelectedItem());
-                        pst.setString(4,"2018-10-01");
-                        pst.execute();
-                    }
-                    catch(Exception e)
-                    {
-                        JOptionPane.showMessageDialog(null,e);
-                    }
-        //            SendEmail s=new SendEmail();
-        //            s.booked(username);
-                    mainp.setVisible(true);
-                    this.hide();
+                    payment p=new payment(mainp,this,se,(String) ds.getSelectedItem(),theatre);
+                    p.setVisible(true);
+                    this.setVisible(false);
                     this.dispose();
+                    
+                    //
+//                    for(int i=0;i<se.size();i++)
+//                    {
+//                        try {
+//                            pst.setString(6, (String) se.get(i));
+//                            pst.execute();
+//                        } 
+//                        catch (Exception ex) {
+//                            JOptionPane.showMessageDialog(null, ex);
+//                        }
+//                        
+//                    }
+                    // insert statement over here
+//                            JOptionPane.showMessageDialog(null,"Clash");
+//                    SendEmail s=new SendEmail();
+//                    JOptionPane.showMessageDialog(null, "Confirmed booking");
+//                    
+//                    String abc="update screening set noseatbooked=noseatbooked+"+count+" where theatreid=? and challid=? and time=? and date=?";
+//                    try
+//                    {
+//                        pst = conn.prepareStatement(abc);
+//                        pst.setString(1,theatre);
+//                        pst.setString(2,Integer.toString(mainp.hallid));
+//                        pst.setString(3,(String) ds.getSelectedItem());
+//                        pst.setString(4,mainp.dat);
+//                        pst.execute();
+//                    }
+//                    catch(Exception e)
+//                    {
+//                        JOptionPane.showMessageDialog(null,e);
+//                    }
+//                    //send data of the new ticket which is clashing with the old ticket.
+////                    s.alert(receiver,username);
+//                    mainp.setVisible(true);
+//                    this.hide();
+//                    this.dispose();
                 }
-                else
-                {
-                    try
-                    {
-                        pst = conn.prepareStatement(roll);
-                        pst.execute();
-                    }
-                    catch(Exception e)
-                    {
-                        JOptionPane.showMessageDialog(null,"rollingback");
-                        JOptionPane.showMessageDialog(null,e);
-                    }
-                }
-
-                //send data of the new ticket which is clashing with the old ticket.
-                //s.alert(receiver,username);
             }
             else
             {
-    //                            JOptionPane.showMessageDialog(null,"Clash");
-                SendEmail s=new SendEmail();
-                //mainp.
-               // s.booking(receiver, c, c, endtime, username, HEIGHT, roll);
-                JOptionPane.showMessageDialog(null, "Confirmed booking");
-                try
-                {
-                    pst = conn.prepareStatement(set2);
-                    pst.execute();
-                }
-                catch(Exception e)
-                {
-                    JOptionPane.showMessageDialog(null,e);
-                }
-                String abc="update screening set noseatbooked=noseatbooked+"+count+" where theatreid=? and challid=? and time=? and date=?";
-                try
-                {
-                    pst = conn.prepareStatement(abc);
-                    pst.setString(1,"1");
-                    pst.setString(2,"1");
-                    pst.setString(3,(String) ds.getSelectedItem());
-                    pst.setString(4,"2018-10-01");
-                    pst.execute();
-                }
-                catch(Exception e)
-                {
-                    JOptionPane.showMessageDialog(null,e);
-                }
+                payment p=new payment(mainp,this,se,(String) ds.getSelectedItem(),theatre);
+                    p.setVisible(true);
+                    this.setVisible(false);
+                    this.dispose();
+                //payment(mainp,se,(String) ds.getSelectedItem(),theatre)
+                
+//                            JOptionPane.showMessageDialog(null,"Clash");
+//                SendEmail s=new SendEmail();
+//                s.booking(receiver, username, mainp.dat, Integer.parseInt((String)ds.getSelectedItem()), mainp.hall, Integer.parseInt(theatre), mainp.moviename);
+//                JOptionPane.showMessageDialog(null, "Confirmed booking");
+//                //payment(se);
+//                String abc="update screening set noseatbooked=noseatbooked+"+count+" where theatreid=? and challid=? and time=? and date=?";
+//                try
+//                {
+//                    pst = conn.prepareStatement(abc);
+//                    pst.setString(1,theatre);
+//                    pst.setString(2,Integer.toString(mainp.hallid));
+//                    pst.setString(3,(String) ds.getSelectedItem());
+//                    pst.setString(4,mainp.dat);
+//                    pst.execute();
+//                }
+//                catch(Exception e)
+//                {
+//                    JOptionPane.showMessageDialog(null,e);
+//                }
     //            SendEmail s=new SendEmail();
     //            s.booked(username);
-                mainp.setVisible(true);
-                this.hide();
-                this.dispose();
+//                mainp.setVisible(true);
+//                this.hide();
+//                this.dispose();
             }
-        }
-        else
-        {
-            
-            try
-            {
-                pst = conn.prepareStatement(roll);
-                pst.execute();
-            }
-            catch(Exception e)
-            {
-                JOptionPane.showMessageDialog(null,"rollingback");
-                JOptionPane.showMessageDialog(null,e);
-            }
-        }
-        try
-        {
-            pst = conn.prepareStatement(set2);
-            pst.execute();
-        }
-        catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(null,e);
         }
     }//GEN-LAST:event_book_buttonActionPerformed
 
@@ -1211,15 +1181,15 @@ public class seat extends javax.swing.JFrame {
         // TODO add your handling code here:
         // get movieid,challid and date for time slots in theatres. Then fromthat we get a single theatre id 
         // we use combination of those to get seats booked.
-        
         int count=0;
-        String time="select * from screening where movieid=? and challid=? and date=?";
+        
+        String time="select distinct(time) from screening where challid=? and date=? and movieid=? order by time;";
         try
         {
             pst = conn.prepareStatement(time);
-            pst.setString(1,"1");
-            pst.setString(2,"1");
-            pst.setString(3,"2018-10-01");
+            pst.setString(1,Integer.toString(mainp.hallid));
+            pst.setString(2,mainp.dat);
+            pst.setString(3,Integer.toString(mainp.movieno));
             rs=pst.executeQuery();
             while(rs.next())
             {
@@ -1229,27 +1199,43 @@ public class seat extends javax.swing.JFrame {
                 {
                     count++;
                     ds.setSelectedItem(Integer.toString(tslot));
-                    }
+                }
             }
-            time_slot.setModel(ds);
-            
+            time_slot.setModel(ds);            
         }
         catch(Exception e)
         {
             JOptionPane.showMessageDialog(null,"time slots");
             JOptionPane.showMessageDialog(null,e);
         }
-        String sql="select * from ticket where theatreid=? and challid=? and time=? and date=?";
+        String sql="select theatreid from screening where movieid=? and challid=? and time=? and date=?;";
         try
         {
             pst = conn.prepareStatement(sql);
-            pst.setString(1,"1");
-            pst.setString(2,"1");
+            pst.setString(1,Integer.toString(mainp.movieno));
+            pst.setString(2,Integer.toString(mainp.hallid));
+            pst.setString(3,(String) ds.getSelectedItem());
+            pst.setString(4,mainp.dat);
+            rs=pst.executeQuery();
+            if(rs.next())
+            {
+                theatre=Integer.toString(rs.getInt(1));
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,e);
+        }
+        sql="select * from ticket where theatreid=? and challid=? and time=? and date=?;";
+        try
+        {
+            pst = conn.prepareStatement(sql);
+            pst.setString(1,theatre);
+            pst.setString(2,Integer.toString(mainp.hallid));
             String temp = (String) ds.getSelectedItem();
-            pst.setString(3,temp);
-            
+            pst.setString(3,temp);            
             //pst.setString(3,"2100");
-            pst.setString(4,"2018-10-01");
+            pst.setString(4,mainp.dat);
             rs = pst.executeQuery();
             String bseat;
             while (rs.next())
@@ -1473,15 +1459,97 @@ public class seat extends javax.swing.JFrame {
         h6.setEnabled(true);
         h7.setEnabled(true);
         h8.setEnabled(true);
-        String sql="select * from ticket where theatreid=? and challid=? and time=? and date=?";
+        a1.setSelected(false);
+        a2.setSelected(false);
+        a3.setSelected(false);
+        a4.setSelected(false);
+        a5.setSelected(false);
+        a6.setSelected(false);
+        a7.setSelected(false);
+        a8.setSelected(false);
+        b1.setSelected(false);
+        b2.setSelected(false);
+        b3.setSelected(false);
+        b4.setSelected(false);
+        b5.setSelected(false);
+        b6.setSelected(false);
+        b7.setSelected(false);
+        b8.setSelected(false);
+        c1.setSelected(false);
+        c2.setSelected(false);
+        c3.setSelected(false);
+        c4.setSelected(false);
+        c5.setSelected(false);
+        c6.setSelected(false);
+        c7.setSelected(false);
+        c8.setSelected(false);
+        d1.setSelected(false);
+        d2.setSelected(false);
+        d3.setSelected(false);
+        d4.setSelected(false);
+        d5.setSelected(false);
+        d6.setSelected(false);
+        d7.setSelected(false);
+        d8.setSelected(false);
+        e1.setSelected(false);
+        e2.setSelected(false);
+        e3.setSelected(false);
+        e4.setSelected(false);
+        e5.setSelected(false);
+        e6.setSelected(false);
+        e7.setSelected(false);
+        e8.setSelected(false);
+        f1.setSelected(false);
+        f2.setSelected(false);
+        f3.setSelected(false);
+        f4.setSelected(false);
+        f5.setSelected(false);
+        f6.setSelected(false);
+        f7.setSelected(false);
+        f8.setSelected(false);
+        g1.setSelected(false);
+        g2.setSelected(false);
+        g3.setSelected(false);
+        g4.setSelected(false);
+        g5.setSelected(false);
+        g6.setSelected(false);
+        g7.setSelected(false);
+        g8.setSelected(false);
+        h1.setSelected(false);
+        h2.setSelected(false);
+        h3.setSelected(false);
+        h4.setSelected(false);
+        h5.setSelected(false);
+        h6.setSelected(false);
+        h7.setSelected(false);
+        h8.setSelected(false);
+        String sql="select theatreid from screening where movieid=? and challid=? and time=? and date=?;";
         try
         {
             pst = conn.prepareStatement(sql);
-            pst.setString(1,"1");
-            pst.setString(2,"1");
+            pst.setString(1,Integer.toString(mainp.movieno));
+            pst.setString(2,Integer.toString(mainp.hallid));
+            pst.setString(3,(String) ds.getSelectedItem());
+            pst.setString(4,mainp.dat);
+            rs=pst.executeQuery();
+            if(rs.next())
+            {
+                theatre=Integer.toString(rs.getInt(1));
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,e);
+        }
+        sql="select * from ticket where theatreid=? and challid=? and time=? and date=?;";
+        try
+        {
+            pst = conn.prepareStatement(sql);
+            pst.setString(1,theatre);
+            pst.setString(2,Integer.toString(mainp.hallid));
             String temp=(String) ds.getSelectedItem();
             pst.setString(3,temp);
-            pst.setString(4,"2018-10-01");
+            pst.setString(4,mainp.dat);
             rs = pst.executeQuery();
             String bseat;
             while (rs.next())
@@ -1624,6 +1692,7 @@ public class seat extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(null, e);
         }
+//        JOptionPane.showMessageDialog(null, "hi");
     }//GEN-LAST:event_time_slotItemStateChanged
 
     /**

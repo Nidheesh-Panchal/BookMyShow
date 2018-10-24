@@ -23,7 +23,7 @@ public class register extends javax.swing.JFrame {
     
     public static Connection connecrDb() {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bms", "root", "password");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bms", "root", "root");
             return conn;
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);

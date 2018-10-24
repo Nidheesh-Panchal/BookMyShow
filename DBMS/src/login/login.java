@@ -68,6 +68,7 @@ public class login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         register_button = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
@@ -201,6 +202,14 @@ public class login extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton2.setText("Forgot Password?");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -225,7 +234,10 @@ public class login extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(register_button)))
+                        .addComponent(register_button))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton2)))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -245,7 +257,8 @@ public class login extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(register_button))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -325,14 +338,14 @@ public class login extends javax.swing.JFrame {
 
     private void register_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_buttonActionPerformed
         // TODO add your handling code here:
-        screening s=new screening();
-        s.setVisible(true);
-        this.setVisible(false);
-        this.dispose();
-//        register r=new register(this);
-//        r.setVisible(true);
+//        screening s=new screening();
+//        s.setVisible(true);
 //        this.setVisible(false);
 //        this.dispose();
+        register r=new register(this);
+        r.setVisible(true);
+        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_register_buttonActionPerformed
 
     private void username_txtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_username_txtKeyPressed
@@ -361,7 +374,7 @@ public class login extends javax.swing.JFrame {
                 String pass=password_txt.getText();
                 if (rs.getNString("password").equals(pass))
                 {
-                    JOptionPane.showMessageDialog(null, "username and password are correct");
+//                    JOptionPane.showMessageDialog(null, "username and password are correct");
                     String username=username_txt.getText();
                     password_txt.setText("");
                     username_txt.setText("");
@@ -428,7 +441,7 @@ public class login extends javax.swing.JFrame {
                 String pass=password_txt.getText();
                 if (rs.getNString("password").equals(pass))
                 {
-                    JOptionPane.showMessageDialog(null, "username and password are correct");
+//                    JOptionPane.showMessageDialog(null, "username and password are correct");
                     String username=username_txt.getText();
                     password_txt.setText("");
                     username_txt.setText("");
@@ -455,6 +468,14 @@ public class login extends javax.swing.JFrame {
     private void formWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowLostFocus
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowLostFocus
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        ForgotPassword forgot=new ForgotPassword();
+        forgot.setVisible(true);
+        this.setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -494,6 +515,7 @@ public class login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

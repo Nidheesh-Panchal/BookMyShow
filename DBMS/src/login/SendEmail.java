@@ -86,14 +86,12 @@ public void registered(String receiver,String use) {
         JOptionPane.showMessageDialog(null,e);
     }
   }
-public void booking(String receiver,String use,String dat,int time, String hallname,int theatreid,String movie) {
+public void booking(String receiver,String use,String dat,String time, String hallname,String theatreid,String moviename,String seats) {
 
-    final String username = " cineclick@yahoo.com "; //ur email
-    final String password = " Cineklik2018";
-    //final String receiver = "2016ucp1008@mnit.ac.in";
+       final String username = "cineclick@yahoo.com"; //ur email
+    final String password = "Cineklik2018";
 
     Properties props = new Properties();
-    
                 
                 props.put("mail.smtp.host", "plus.smtp.mail.yahoo.com");
 		props.put("mail.smtp.socketFactory.port", "465");
@@ -117,15 +115,16 @@ public void booking(String receiver,String use,String dat,int time, String halln
         message.setFrom(new InternetAddress(username));//ur email
         message.setRecipients(Message.RecipientType.TO,
         InternetAddress.parse(receiver));//u will send to
-        message.setSubject("Movie booking confirmed");    
-        message.setText("Dear " + use + ", your movie booking was successful. Your movie details are as follows \n" + movie + " at " + time + " on " + dat + " at " + hallname + " in theatre : " + theatreid + "\nWe hope you enjoy your movie.\n ");
-       Transport.send(message);            
+         message.setSubject("Movie booking confirmed");    
+    message.setText("Dear " + use + ", your movie booking was successful. Your movie details are as follows \n\n Movie Name : " + moviename + " \nTime :  " + time + " \nDate :  " + dat + " \nCinema :  " + hallname + " \nScreen no. :  " + theatreid + "\n Seats: "+seats+"\n\nWe hope you enjoy your movie.\n ");
+    Transport.send(message);
 }
 
     catch (MessagingException e) 
     {
         JOptionPane.showMessageDialog(null,e);
     }
+      
   }
 public void cancelled(String receiver,String use,String dat,int time, String hallname,String movie) {   
 
@@ -213,12 +212,12 @@ public void forgetpassword(String receiver,String use,String pass) {
 
     Properties props = new Properties();
                 
-                props.put("mail.smtp.host", "plus.smtp.mail.yahoo.com");
-		props.put("mail.smtp.socketFactory.port", "465");
-		props.put("mail.smtp.socketFactory.class",
-				"javax.net.ssl.SSLSocketFactory");
-		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.port", "465");
+    props.put("mail.smtp.host", "plus.smtp.mail.yahoo.com");
+    props.put("mail.smtp.socketFactory.port", "587");
+    props.put("mail.smtp.socketFactory.class",
+                    "javax.net.tls.SSLSocketFactory");
+    props.put("mail.smtp.auth", "true");
+    props.put("mail.smtp.port", "587");
 
 
 
