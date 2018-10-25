@@ -56,6 +56,7 @@ public class mainpage extends javax.swing.JFrame {
     ResultSet rs = null;
     PreparedStatement pst = null;
     DefaultComboBoxModel location=new DefaultComboBoxModel();
+    DefaultListModel hist = new DefaultListModel();
     int index;
     ActionListener listen=new ActionListener(){
         
@@ -211,8 +212,9 @@ public class mainpage extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
         jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        history_list = new javax.swing.JList<>();
         updateprofile_panel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         username_txt = new javax.swing.JTextField();
@@ -234,6 +236,7 @@ public class mainpage extends javax.swing.JFrame {
         genre_label = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         mdesc_label = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
         go_button = new javax.swing.JButton();
         movpic = new javax.swing.JScrollPane();
         location_combo = new javax.swing.JComboBox<>();
@@ -314,25 +317,33 @@ public class mainpage extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton1.setText("Cancel Ticket");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        history_list.setEnabled(false);
+        jScrollPane1.setViewportView(history_list);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(91, 91, 91)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -491,6 +502,9 @@ public class mainpage extends javax.swing.JFrame {
         mdesc_label.setRows(5);
         jScrollPane2.setViewportView(mdesc_label);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setText("Genre : ");
+
         javax.swing.GroupLayout movie_descLayout = new javax.swing.GroupLayout(movie_desc);
         movie_desc.setLayout(movie_descLayout);
         movie_descLayout.setHorizontalGroup(
@@ -503,8 +517,11 @@ public class mainpage extends javax.swing.JFrame {
                     .addGroup(movie_descLayout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addGroup(movie_descLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(genre_label)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(movie_descLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(genre_label)))))
                 .addContainerGap(84, Short.MAX_VALUE))
         );
         movie_descLayout.setVerticalGroup(
@@ -513,7 +530,9 @@ public class mainpage extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(mname_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(genre_label)
+                .addGroup(movie_descLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(genre_label)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(28, Short.MAX_VALUE))
@@ -574,7 +593,7 @@ public class mainpage extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(logout_button)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(movpic, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                        .addComponent(movpic)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(go_button)
@@ -724,7 +743,8 @@ public class mainpage extends javax.swing.JFrame {
 //        screen.repaint();
 //        screen.updateUI();
         java.util.Date daty=new Date(System.currentTimeMillis());
-        //System.out.println(dat);
+                
+        //System.out.println(tim);
         date_choose.setDate(daty);
         date_choose.setMinSelectableDate(daty);
         String loc="select distinct(chlocation) from cinemahall;";
@@ -840,6 +860,32 @@ public class mainpage extends javax.swing.JFrame {
         
 
 //thenun.setIcon(abc);
+        sql="select t.date,t.time,m.mname,c.chname from ticket t inner join screening s on (t.theatreid,t.challid,t.date,t.time)=(s.theatreid,s.challid,s.date,s.time) inner join movie m on s.movieid=m.movieid inner join cinemahall c on c.challid=t.challid where username=? group by t.theatreid,t.challid,t.date,t.time order by t.date;";
+        try
+        {
+            pst = conn.prepareStatement(sql);
+            pst.setString(1,username);
+            rs=pst.executeQuery();
+            while (rs.next())
+            {
+                Date expdatesqldate=rs.getDate(1);
+//               System.out.println(expdatesqldate);
+               String ddexp=Integer.toString(expdatesqldate.getDate());
+               String mmexp=Integer.toString(expdatesqldate.getMonth()+1);
+               String yyexp=Integer.toString(expdatesqldate.getYear()+1900);
+               String expdatesql=yyexp+"-"+mmexp+"-"+ddexp;
+               String timing=Integer.toString(rs.getInt(2));
+               String moviename=rs.getNString(3);
+               String challname=rs.getNString(4);
+               hist.addElement(expdatesql + "       " + timing + "       " + moviename + "       " + challname);
+            }
+        }
+        catch(Exception e)
+        { 
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+        history_list.setModel(hist);
     }//GEN-LAST:event_formWindowOpened
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
@@ -849,6 +895,10 @@ public class mainpage extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        cancel c=new cancel(this,username);
+        c.setVisible(true);
+        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void logout_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout_buttonActionPerformed
@@ -985,9 +1035,11 @@ public class mainpage extends javax.swing.JFrame {
     private javax.swing.JTextField fname_txt;
     private javax.swing.JLabel genre_label;
     private javax.swing.JButton go_button;
+    private javax.swing.JList<String> history_list;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

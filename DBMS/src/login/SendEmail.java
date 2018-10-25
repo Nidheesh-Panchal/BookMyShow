@@ -122,7 +122,7 @@ public void booking(String receiver,String use,String dat,String time, String ha
     }
       
   }
-public void cancelled(String receiver,String use,String dat,int time, String hallname,String movie) {   
+public void cancelled(String receiver,String use,String dat,String time, String hallname,String movie) {   
 
     final String username = " cineclick@yahoo.com "; //ur email
     final String password = " Cineklik2018";
@@ -218,7 +218,7 @@ public void forgetpassword(String receiver,String use,String pass) {
         message.setRecipients(Message.RecipientType.TO,
         InternetAddress.parse(receiver));//u will send to
          message.setSubject("Reset password");    
-        message.setText("Dear use, \n \n "+ " This is an auto generated email from CineClick. /n" + " We have logged a request that you have forgotten your account password." + "Your account password is : " + pass);
+        message.setText("Dear "+use+", \n \n "+ " This is an auto generated email from CineClick. \n We have logged a request that you have forgotten your account password. Your account password is : " + pass);
         Transport.send(message);
 }
 
