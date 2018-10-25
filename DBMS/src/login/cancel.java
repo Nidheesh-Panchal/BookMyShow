@@ -34,6 +34,24 @@ public class cancel extends javax.swing.JFrame {
         }
         return null;
     }
+//     DefaultTableModel dtm= = new DefaultTableModel() {
+//
+//    @Override
+//    public boolean isCellEditable(int row, int column) {
+//       //all cells false
+//       return false;
+//    }
+//};
+     DefaultTableModel dtm = new DefaultTableModel() {
+
+    @Override
+    public boolean isCellEditable(int row, int column) {
+       //all cells false
+       return false;
+    }
+};
+
+
     Connection conn = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
@@ -67,18 +85,11 @@ public class cancel extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         ticket_table = new javax.swing.JTable();
-        moviename = new javax.swing.JTextField();
-        movietime = new javax.swing.JTextField();
-        moviedate = new com.toedter.calendar.JDateChooser();
-        chall = new javax.swing.JTextField();
         cancel_button = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(250, 150));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -90,6 +101,7 @@ public class cancel extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cancel Ticket", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
 
+        ticket_table.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         ticket_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -109,19 +121,16 @@ public class cancel extends javax.swing.JFrame {
             new String [] {
                 "Date", "Time", "Movie name", "Cinema hall"
             }
-        ));
-        jScrollPane2.setViewportView(ticket_table);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
-        moviename.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-
-        movietime.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        movietime.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                movietimeActionPerformed(evt);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-
-        chall.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jScrollPane2.setViewportView(ticket_table);
 
         cancel_button.setText("Cancel Ticket");
         cancel_button.addActionListener(new java.awt.event.ActionListener() {
@@ -130,69 +139,26 @@ public class cancel extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel1.setText("Date:");
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel2.setText("Time:");
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel3.setText("Movie:");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel4.setText("Cinema Hall:");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(moviedate, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(movietime, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(moviename, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(chall, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(297, 297, 297)
-                                .addComponent(cancel_button)))
-                        .addGap(0, 92, Short.MAX_VALUE)))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cancel_button)
+                .addGap(341, 341, 341))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(moviedate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(movietime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3)
-                        .addComponent(moviename, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4)
-                        .addComponent(chall, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cancel_button)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cancel_button))
         );
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -221,17 +187,13 @@ public class cancel extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addGap(30, 30, 30))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void movietimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movietimeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_movietimeActionPerformed
 
     private void cancel_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_buttonActionPerformed
         // TODO add your handling code here:
@@ -245,11 +207,19 @@ public class cancel extends javax.swing.JFrame {
         String getmovie="select movieid from movie where mname=?";
         String getchname="select challid from cinemahall where chname=?";
         String delete="delete from ticket where username=? and theatreid=? and challid=? and time=? and date=?;";
+        //dtm.;
         
+        int row=ticket_table.getSelectedRow();
+        if(row==-1)
+        {
+            JOptionPane.showMessageDialog(null,"Please select a ticket from the table to cancel");
+                return;
+        }
+//        System.out.println(ticket_table.getValueAt(row, 0));
         try
         {
             pst = conn.prepareStatement(getmovie);
-            pst.setString(1,moviename.getText());
+            pst.setString(1,(String)ticket_table.getValueAt(row, 2));
             rs = pst.executeQuery();
             if(rs.next())
             {
@@ -269,7 +239,7 @@ public class cancel extends javax.swing.JFrame {
         try
         {
             pst = conn.prepareStatement(getchname);
-            pst.setString(1,chall.getText());
+            pst.setString(1,(String)ticket_table.getValueAt(row, 3));
             rs = pst.executeQuery();
             if(rs.next())
             {
@@ -292,12 +262,12 @@ public class cancel extends javax.swing.JFrame {
             pst = conn.prepareStatement(gettid);
             pst.setString(1,movieid);
             pst.setString(2,challid);
-            pst.setString(3,movietime.getText());
-            java.util.Date date=moviedate.getDate();
-            String dd=Integer.toString(date.getDate());
-            String mm=Integer.toString(date.getMonth()+1);
-            String yy=Integer.toString(date.getYear()+1900);
-            dalit=yy+"-"+mm+"-"+dd;
+            pst.setString(3,(String)ticket_table.getValueAt(row, 1));
+//            java.util.Date date=moviedate.getDate();
+//            String dd=Integer.toString(date.getDate());
+//            String mm=Integer.toString(date.getMonth()+1);
+//            String yy=Integer.toString(date.getYear()+1900);
+            dalit=(String)ticket_table.getValueAt(row, 0);
             pst.setString(4,dalit);
             rs = pst.executeQuery();
             if(rs.next())
@@ -321,7 +291,7 @@ public class cancel extends javax.swing.JFrame {
             pst = conn.prepareStatement(validate);
             pst.setString(1,tid);
             pst.setString(2,challid);
-            pst.setString(3,movietime.getText());
+            pst.setString(3,(String)ticket_table.getValueAt(row, 1));
             pst.setString(4,dalit);
             pst.setString(5,username);
             rs = pst.executeQuery();
@@ -334,7 +304,7 @@ public class cancel extends javax.swing.JFrame {
                    JOptionPane.showMessageDialog(null,"Your deadline for ticket cancellation is reached. You cannot cancel your ticket now.");
                    return;
                }
-               int count=0;
+               int count=1;
                while(rs.next())
                {
                    count++;
@@ -346,7 +316,7 @@ public class cancel extends javax.swing.JFrame {
                     pst.setString(1,Integer.toString(count));
                     pst.setString(2,tid);
                     pst.setString(3,challid);
-                    pst.setString(4,movietime.getText());
+                    pst.setString(4,(String)ticket_table.getValueAt(row, 1));
                     pst.setString(5,dalit);
                     pst.execute();
                 }
@@ -374,7 +344,7 @@ public class cancel extends javax.swing.JFrame {
             pst.setString(1,username);
             pst.setString(2,tid);
             pst.setString(3,challid);
-            pst.setString(4,movietime.getText());
+            pst.setString(4,(String)ticket_table.getValueAt(row, 1));
             pst.setString(5,dalit);
             pst.execute();
             String findmail="select emailid from customer where username=?";
@@ -394,7 +364,7 @@ public class cancel extends javax.swing.JFrame {
             }
             SendEmail s=new SendEmail();
             
-            s.cancelled(receiver,username,dalit,movietime.getText(), chall.getText(),moviename.getText());
+            s.cancelled(receiver,username,dalit,(String)ticket_table.getValueAt(row, 1), (String)ticket_table.getValueAt(row, 3),(String)ticket_table.getValueAt(row, 2));
             JOptionPane.showMessageDialog(null,"Successfully cancelled your tickets");
             mainp.setVisible(true);
             this.setVisible(false);
@@ -416,10 +386,8 @@ public class cancel extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        java.util.Date dat=new Date(System.currentTimeMillis());
-        moviedate.setDate(dat);
-        moviedate.setMinSelectableDate(dat);
-        DefaultTableModel dtm = (DefaultTableModel) ticket_table.getModel();
+        //dtm.
+        dtm=(DefaultTableModel) ticket_table.getModel();
         dtm.setRowCount(0);
         String getData="select t.date,t.time,m.mname,c.chname from ticket t inner join screening s on (t.theatreid,t.challid,t.date,t.time)=(s.theatreid,s.challid,s.date,s.time) inner join movie m on s.movieid=m.movieid inner join cinemahall c on c.challid=t.challid where username=? group by t.theatreid,t.challid,t.date,t.time order by t.date desc;";
         try
@@ -505,17 +473,9 @@ public class cancel extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancel_button;
-    private javax.swing.JTextField chall;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private com.toedter.calendar.JDateChooser moviedate;
-    private javax.swing.JTextField moviename;
-    private javax.swing.JTextField movietime;
     private javax.swing.JTable ticket_table;
     // End of variables declaration//GEN-END:variables
 }

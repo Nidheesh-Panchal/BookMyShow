@@ -124,9 +124,10 @@ public void booking(String receiver,String use,String dat,String time, String ha
   }
 public void cancelled(String receiver,String use,String dat,String time, String hallname,String movie) {   
 
-    final String username = " cineclick@yahoo.com "; //ur email
-    final String password = " Cineklik2018";
-    Properties props = new Properties();  
+    final String username = "cineclick@yahoo.com"; //ur email
+    final String password = "Cineklik2018";
+
+    Properties props = new Properties();
                 
                 props.put("mail.smtp.host", "plus.smtp.mail.yahoo.com");
 		props.put("mail.smtp.socketFactory.port", "465");
@@ -146,9 +147,10 @@ public void cancelled(String receiver,String use,String dat,String time, String 
         message.setFrom(new InternetAddress(username));//ur email
         message.setRecipients(Message.RecipientType.TO,
         InternetAddress.parse(receiver));//u will send to
-        message.setSubject("Movie booking cancellation");    
+         message.setSubject("Movie booking confirmed");    
+    //message.setText("Dear " + use + ", your movie booking was successful. Your movie details are as follows \n\n Movie Name : " + moviename + " \nTime :  " + time + " \nDate :  " + dat + " \nCinema :  " + hallname + " \nScreen no. :  " + theatreid + "\n Seats: "+seats+"\n\nWe hope you enjoy your movie.\n ");
         message.setText("Dear " + use + ", your booking cancellation has been processed for " + movie + " at " + time + " on " + dat + " at " + hallname + "\nThe refund will reflect in your account shortly.\n ");
-       Transport.send(message);
+    Transport.send(message);
 }
 
     catch (MessagingException e) 
@@ -158,18 +160,17 @@ public void cancelled(String receiver,String use,String dat,String time, String 
   }
 public void alert(String receiver, String use) {   
 
-    final String username = " cineclick@yahoo.com "; //ur email
-    final String password = " Cineklik2018";
-    //final String receiver = "2016ucp1008@mnit.ac.in";
+final String username = "cineclick@yahoo.com"; //ur email
+    final String password = "Cineklik2018";
 
     Properties props = new Properties();
                 
-    props.put("mail.smtp.host", "plus.smtp.mail.yahoo.com");
-    props.put("mail.smtp.socketFactory.port", "465");
-    props.put("mail.smtp.socketFactory.class",
-                    "javax.net.ssl.SSLSocketFactory");
-    props.put("mail.smtp.auth", "true");
-    props.put("mail.smtp.port", "465");
+                props.put("mail.smtp.host", "plus.smtp.mail.yahoo.com");
+		props.put("mail.smtp.socketFactory.port", "465");
+		props.put("mail.smtp.socketFactory.class",
+				"javax.net.ssl.SSLSocketFactory");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.port", "465");
     Session session = Session.getInstance(props, new javax.mail.Authenticator() {
     protected PasswordAuthentication getPasswordAuthentication() {
         return new PasswordAuthentication(username, password);
@@ -182,9 +183,9 @@ public void alert(String receiver, String use) {
         message.setFrom(new InternetAddress(username));//ur email
         message.setRecipients(Message.RecipientType.TO,
         InternetAddress.parse(receiver));//u will send to
-        message.setSubject("Clash in movie bookings");    
-        message.setText("Dear " + use + ", \n \n  This is an auto generated email from CineClick. /n We have noticed that you’ve made multiple bookings at similar timings.\n If you wish to change your booking kindly log in to your account. If you do not wish to make any changes, kindly ignore this email. \nThank you.");
-       Transport.send(message);
+         message.setSubject("Movie booking confirmed");
+         message.setText("Dear " + use + ", \n \n  This is an auto generated email from CineClick. \n We have noticed that you’ve made multiple bookings at similar timings.\n If you wish to change your booking kindly log in to your account. If you do not wish to make any changes, kindly ignore this email. \nThank you.");
+    Transport.send(message);
 }
 
     catch (MessagingException e) 

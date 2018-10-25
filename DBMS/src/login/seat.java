@@ -141,6 +141,7 @@ public class seat extends javax.swing.JFrame {
         back_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setLocation(new java.awt.Point(350, 50));
         setResizable(false);
         addHierarchyListener(new java.awt.event.HierarchyListener() {
             public void hierarchyChanged(java.awt.event.HierarchyEvent evt) {
@@ -1039,7 +1040,11 @@ public class seat extends javax.swing.JFrame {
             {
                 JOptionPane.showMessageDialog(null,e);
             }
-        
+        if(se.size()==0)
+        {
+            JOptionPane.showMessageDialog(null,"Please select some seats for booking it.");
+            return;
+        }
         int cnf=JOptionPane.showConfirmDialog(null, "Confirm this movie ticket?\nCost = "+(cost*se.size()));
         // if pressed yes to confirm. that is the first button. that is button number 0.
         if(cnf==0)
