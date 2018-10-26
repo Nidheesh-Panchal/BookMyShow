@@ -66,6 +66,8 @@ public class seat extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
+        book_button = new javax.swing.JButton();
         time_slot = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -137,7 +139,6 @@ public class seat extends javax.swing.JFrame {
         h7 = new javax.swing.JToggleButton();
         h8 = new javax.swing.JToggleButton();
         jToggleButton1 = new javax.swing.JToggleButton();
-        book_button = new javax.swing.JButton();
         back_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -169,6 +170,17 @@ public class seat extends javax.swing.JFrame {
             }
         });
 
+        jPanel2.setBackground(new java.awt.Color(153, 51, 0));
+
+        book_button.setBackground(new java.awt.Color(255, 153, 0));
+        book_button.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        book_button.setText("Book Tickets");
+        book_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                book_buttonActionPerformed(evt);
+            }
+        });
+
         time_slot.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         time_slot.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -177,17 +189,22 @@ public class seat extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Time");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Seats", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        jPanel1.setBackground(new java.awt.Color(153, 0, 0));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Seats", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(255, 204, 0))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Platinum");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Gold");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Silver");
 
         a1.setText("A1");
@@ -566,14 +583,7 @@ public class seat extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        book_button.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        book_button.setText("Book Tickets");
-        book_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                book_buttonActionPerformed(evt);
-            }
-        });
-
+        back_button.setBackground(new java.awt.Color(255, 153, 0));
         back_button.setText("<- Go Back");
         back_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -581,36 +591,35 @@ public class seat extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(back_button)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(time_slot, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(218, 218, 218)
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(back_button)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(time_slot, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(208, 208, 208)
                         .addComponent(book_button)))
                 .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addComponent(time_slot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
                         .addComponent(back_button)))
                 .addGap(6, 6, 6)
@@ -618,6 +627,17 @@ public class seat extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(book_button)
                 .addContainerGap())
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -985,6 +1005,7 @@ public class seat extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,e);
         }
         //mainp.
+        //getting theatreid in theatre;
         String sql="select theatreid from screening where movieid=? and challid=? and time=? and date=?;";
         try
         {
@@ -1003,6 +1024,7 @@ public class seat extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(null,e);
         }
+        //getting cost
         int cost=0;
         String c="select cost from screening where theatreid=? and challid=? and time=? and date=?";
         try
@@ -1026,20 +1048,20 @@ public class seat extends javax.swing.JFrame {
         
         //String receiver;
         String findmail="select emailid from customer where username=?";
-            try
+        try
+        {
+            pst=conn.prepareStatement(findmail);
+            pst.setString(1,username);
+            rs=pst.executeQuery();
+            if(rs.next())
             {
-                pst=conn.prepareStatement(findmail);
-                pst.setString(1,username);
-                rs=pst.executeQuery();
-                if(rs.next())
-                {
-                    receiver=rs.getNString(1);
-                }
+                receiver=rs.getNString(1);
             }
-            catch(Exception e)
-            {
-                JOptionPane.showMessageDialog(null,e);
-            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,e);
+        }
         if(se.size()==0)
         {
             JOptionPane.showMessageDialog(null,"Please select some seats for booking it.");
@@ -1060,7 +1082,7 @@ public class seat extends javax.swing.JFrame {
                 rs=pst.executeQuery();
                 while(rs.next())
                 {
-                t.add(rs.getInt(1));
+                    t.add(rs.getInt(1));
                 }
             }
             catch(Exception e)
@@ -1086,21 +1108,30 @@ public class seat extends javax.swing.JFrame {
             }
             int endtime;
             int flag=0;
+            int temp=Integer.parseInt((String)ds.getSelectedItem());
             for (int i=0;i<t.size();i++)
             {
                 endtime=(int)t.get(i)+((int)((int)d.get(i)/60))*100;
                 endtime+=(int)d.get(i)%60;
-                for(int j=i+1;j<t.size();j++)
+                System.out.println("start "+endtime+" "+temp);
+                
+                if (endtime>temp)
                 {
-                    if (endtime>(int)t.get(j))
-                    {
-                        flag=1;
-                    }
+                    flag=1;
                 }
+                
+//                for(int j=i+1;j<t.size();j++)
+//                {
+//                    System.out.println(t.get(j));
+//                    if (endtime>(int)t.get(j))
+//                    {
+//                        flag=1;
+//                    }
+//                }
             }
             if(flag==1)
             {
-                int cn=JOptionPane.showConfirmDialog(null, "There is a clash with previous booking. Do you still want to confirm this movie ticket?\nCost = "+(cost*count));
+                int cn=JOptionPane.showConfirmDialog(null, "There is a clash with previous booking. Do you still want to confirm this movie ticket?\nCost = "+(cost*se.size()));
                 if(cn==0)
                 {
                     payment p=new payment(mainp,this,se,(String) ds.getSelectedItem(),theatre);
@@ -1807,6 +1838,7 @@ public class seat extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JComboBox<String> time_slot;
     // End of variables declaration//GEN-END:variables

@@ -34,12 +34,31 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
+          <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="jPanel2">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="33" red="99" type="rgb"/>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="back_button" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -48,705 +67,730 @@
                           </Group>
                           <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="208" max="-2" attributes="0"/>
+                          <Component id="book_button" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="218" max="-2" attributes="0"/>
-                      <Component id="book_button" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-          </Group>
-      </Group>
-    </DimensionLayout>
-    <DimensionLayout dim="1">
-      <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
-                      <Component id="time_slot" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="back_button" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="book_button" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-          </Group>
-      </Group>
-    </DimensionLayout>
-  </Layout>
-  <SubComponents>
-    <Component class="javax.swing.JComboBox" name="time_slot">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="12" style="0"/>
-        </Property>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="0"/>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="time_slotItemStateChanged"/>
-      </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="12" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Time"/>
-      </Properties>
-    </Component>
-    <Container class="javax.swing.JPanel" name="jPanel1">
-      <Properties>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder justification="2" title="Seats"/>
-          </Border>
-        </Property>
-      </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="2" attributes="0">
-                      <Component id="jLabel2" alignment="2" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="2" attributes="0">
-                          <Component id="b1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="b2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="b3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="b4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                          <Component id="b5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="b6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="b7" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="b8" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="2" attributes="0">
-                          <Component id="a1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="a2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="a3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="a4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                          <Component id="a5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="a6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="a7" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="a8" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="jLabel3" alignment="2" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="2" attributes="0">
-                          <Component id="c1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="c2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="c3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="c4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                          <Component id="c5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="c6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="c7" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="c8" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="2" attributes="0">
-                          <Component id="d1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="d2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="d3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="d4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                          <Component id="d5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="d6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="d7" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="d8" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="2" attributes="0">
-                          <Component id="e1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="e2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="e3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="e4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                          <Component id="e5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="e6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="e7" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="e8" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="2" attributes="0">
-                          <Component id="f1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="f2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="f3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="f4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                          <Component id="f5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="f6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="f7" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="f8" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="jLabel4" alignment="2" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="2" attributes="0">
-                          <Component id="h1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="h2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="h3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="h4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                          <Component id="h5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="h6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="h7" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="h8" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="2" attributes="0">
-                          <Component id="g1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="g2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="g3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="g4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                          <Component id="g5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="g6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="g7" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="g8" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="jToggleButton1" alignment="2" pref="450" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="0" pref="17" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="a1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="a2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="a3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="a4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="a5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="a6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="a7" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="a8" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="b1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="b2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="b3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="b4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="b5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="b6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="b7" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="b8" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="c1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="c2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="c3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="c4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="c5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="c6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="c7" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="c8" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="d1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="d2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="d3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="d4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="d5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="d6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="d7" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="d8" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
+                          <Component id="time_slot" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="back_button" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
+                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Component id="book_button" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="e1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="e2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="e3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="e4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="e5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="e6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="e7" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="e8" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="f1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="f2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="f3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="f4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="f5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="f6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="f7" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="f8" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="g1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="g2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="g3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="g4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="g5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="g6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="g7" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="g8" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="h1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="h2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="h3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="h4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="h5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="h6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="h7" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="h8" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jToggleButton1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="22" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JButton" name="book_button">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="99" red="ff" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Platinum"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Gold"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Silver"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="a1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="A1"/>
+            <Property name="text" type="java.lang.String" value="Book Tickets"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="a1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="book_buttonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="a2">
+        <Component class="javax.swing.JComboBox" name="time_slot">
           <Properties>
-            <Property name="text" type="java.lang.String" value="A2"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="12" style="0"/>
+            </Property>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
+            </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="a2ActionPerformed"/>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="time_slotItemStateChanged"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="a3">
+        <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="A3"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="12" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Time"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="a4">
+        <Container class="javax.swing.JPanel" name="jPanel1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="A4"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="99" type="rgb"/>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder justification="2" title="Seats">
+                  <Font PropertyName="font" name="Tahoma" size="18" style="1"/>
+                  <Color PropertyName="color" blue="0" green="cc" red="ff" type="rgb"/>
+                </TitledBorder>
+              </Border>
+            </Property>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="a5">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="jLabel2" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="2" attributes="0">
+                              <Component id="b1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="b2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="b3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="b4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                              <Component id="b5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="b6" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="b7" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="b8" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="2" attributes="0">
+                              <Component id="a1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="a2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="a3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="a4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                              <Component id="a5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="a6" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="a7" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="a8" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jLabel3" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="2" attributes="0">
+                              <Component id="c1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="c2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="c3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="c4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                              <Component id="c5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="c6" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="c7" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="c8" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="2" attributes="0">
+                              <Component id="d1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="d2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="d3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="d4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                              <Component id="d5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="d6" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="d7" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="d8" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="2" attributes="0">
+                              <Component id="e1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="e2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="e3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="e4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                              <Component id="e5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="e6" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="e7" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="e8" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="2" attributes="0">
+                              <Component id="f1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="f2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="f3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="f4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                              <Component id="f5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="f6" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="f7" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="f8" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jLabel4" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="2" attributes="0">
+                              <Component id="h1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="h2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="h3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="h4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                              <Component id="h5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="h6" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="h7" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="h8" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="2" attributes="0">
+                              <Component id="g1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="g2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="g3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="g4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                              <Component id="g5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="g6" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="g7" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="g8" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jToggleButton1" alignment="2" pref="450" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="17" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="a1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="a2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="a3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="a4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="a5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="a6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="a7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="a8" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="b1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="b2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="b3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="b4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="b5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="b6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="b7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="b8" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="c1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="c2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="c3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="c4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="c5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="c6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="c7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="c8" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="d1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="d2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="d3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="d4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="d5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="d6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="d7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="d8" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="e1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="e2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="e3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="e4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="e5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="e6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="e7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="e8" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="f1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="f2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="f3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="f4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="f5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="f6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="f7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="f8" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="g1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="g2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="g3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="g4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="g5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="g6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="g7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="g8" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="h1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="h2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="h3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="h4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="h5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="h6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="h7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="h8" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jToggleButton1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="22" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel2">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Platinum"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel3">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Gold"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel4">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Silver"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="a1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="A1"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="a1ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="a2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="A2"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="a2ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="a3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="A3"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="a4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="A4"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="a5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="A5"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="a6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="A6"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="a7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="A7"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="a8">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="A8"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="b1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="B1"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="b2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="B2"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="b3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="B3"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="b4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="B4"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="b5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="B5"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="b6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="B6"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="b7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="B7"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="b8">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="B8"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="c1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="C1"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="c2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="C2"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="c3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="C3"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="c4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="C4"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="c5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="C5"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="c6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="C6"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="c7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="C7"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="c8">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="C8"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="d1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D1"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="d2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D2"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="d3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D3"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="d4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D4"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="d5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D5"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="d6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D6"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="d7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D7"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="d8">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D8"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="e1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="E1"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="e2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="E2"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="e3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="E3"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="e4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="E4"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="e5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="E5"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="e6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="E6"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="e7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="E7"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="e8">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="E8"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="f1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="F1"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="f2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="F2"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="f3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="F3"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="f4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="F4"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="f5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="F5"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="f6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="F6"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="f7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="F7"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="f8">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="F8"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="g1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="G1"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="g2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="G2"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="g3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="G3"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="g4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="G4"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="g5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="G5"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="g6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="G6"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="g7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="G7"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="g8">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="G8"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="h1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="H1"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="h2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="H2"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="h3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="H3"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="h4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="H4"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="h5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="H5"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="h6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="H6"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="h7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="H7"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="h8">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="H8"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="jToggleButton1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Screen"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JButton" name="back_button">
           <Properties>
-            <Property name="text" type="java.lang.String" value="A5"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="99" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="&lt;- Go Back"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="a6">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="A6"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="a7">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="A7"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="a8">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="A8"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="b1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="B1"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="b2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="B2"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="b3">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="B3"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="b4">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="B4"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="b5">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="B5"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="b6">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="B6"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="b7">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="B7"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="b8">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="B8"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="c1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="C1"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="c2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="C2"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="c3">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="C3"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="c4">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="C4"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="c5">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="C5"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="c6">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="C6"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="c7">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="C7"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="c8">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="C8"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="d1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="D1"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="d2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="D2"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="d3">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="D3"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="d4">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="D4"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="d5">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="D5"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="d6">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="D6"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="d7">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="D7"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="d8">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="D8"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="e1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="E1"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="e2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="E2"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="e3">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="E3"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="e4">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="E4"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="e5">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="E5"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="e6">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="E6"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="e7">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="E7"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="e8">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="E8"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="f1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="F1"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="f2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="F2"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="f3">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="F3"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="f4">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="F4"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="f5">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="F5"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="f6">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="F6"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="f7">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="F7"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="f8">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="F8"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="g1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="G1"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="g2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="G2"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="g3">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="G3"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="g4">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="G4"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="g5">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="G5"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="g6">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="G6"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="g7">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="G7"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="g8">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="G8"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="h1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="H1"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="h2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="H2"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="h3">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="H3"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="h4">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="H4"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="h5">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="H5"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="h6">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="H6"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="h7">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="H7"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="h8">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="H8"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="jToggleButton1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Screen"/>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="back_buttonActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="book_button">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="12" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Book Tickets"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="book_buttonActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="back_button">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;- Go Back"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="back_buttonActionPerformed"/>
-      </Events>
-    </Component>
   </SubComponents>
 </Form>
