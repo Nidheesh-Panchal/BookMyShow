@@ -25,17 +25,18 @@ public void registered(String receiver,String use) {
 
     Properties props = new Properties();
     /*props.put("mail.smtp.host", "smtp.gmail.com");
-    props.put("mail.smtp.socketFactory.port", "465");
-    props.put("mail.smtp.socketFactory.class",
-                    "javax.net.ssl.SSLSocketFactory");
-    props.put("mail.smtp.auth", "true");
-    props.put("mail.smtp.port", "465");*/
-
-    props.put("mail.smtp.host", "plus.smtp.mail.yahoo.com");
-    props.put("mail.smtp.socketFactory.port", "465");
-    props.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");
-    props.put("mail.smtp.auth", "true");
-    props.put("mail.smtp.port", "465");
+		props.put("mail.smtp.socketFactory.port", "465");
+		props.put("mail.smtp.socketFactory.class",
+				"javax.net.ssl.SSLSocketFactory");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.port", "465");*/
+                
+                props.put("mail.smtp.host", "plus.smtp.mail.yahoo.com");
+		props.put("mail.smtp.socketFactory.port", "465");
+		props.put("mail.smtp.socketFactory.class",
+				"javax.net.ssl.SSLSocketFactory");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.port", "465");
 
 
 
@@ -52,8 +53,8 @@ public void registered(String receiver,String use) {
         message.setFrom(new InternetAddress(username));//ur email
         message.setRecipients(Message.RecipientType.TO,
         InternetAddress.parse(receiver));//u will send to
-        message.setSubject("Welcome to Cine Click");    
-        message.setText("Hi" + use + ",\n Welcome to the brand new movie booking application.\n\nThank you for registering");
+        message.setSubject("Welcome to CineClick!");    
+        message.setText("\n Welcome to CineClick- the easiest way to discover the universe of movies. CineClick strives to provide a seamless movie booking experience so that you never miss out on your favorite movies. \n\n Now all the latest movies are just a click away! \n Your username is " + use + " \n Thank you for registering");
        Transport.send(message);
         
         /*MimeBodyPart messageBodyPart = new MimeBodyPart();
@@ -78,48 +79,153 @@ public void registered(String receiver,String use) {
        // System.out.println("Done");  
 
             
-    }
+}
+
     catch (MessagingException e) 
     {
         JOptionPane.showMessageDialog(null,e);
     }
   }
-  public void booked(String use) {   
+public void booking(String receiver,String use,String dat,String time, String hallname,String theatreid,String moviename,String seats) {
 
-//    final String username = "cineclick@yahoo.com"; //ur email
-//    final String password = "Cineklik2018";
-//
-//    Properties props = new Properties();
-//
-//    props.put("mail.smtp.host", "plus.smtp.mail.yahoo.com");
-//    props.put("mail.smtp.socketFactory.port", "465");
-//    props.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");
-//    props.put("mail.smtp.auth", "true");
-//    props.put("mail.smtp.port", "465");
-//
-//
-//
-//
-//    Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-//    protected PasswordAuthentication getPasswordAuthentication() {
-//        return new PasswordAuthentication(username, password);
-//    }                            
-//});
-//
-//    try {
-//        
-//        Message message = new MimeMessage(session);
-//        message.setFrom(new InternetAddress(username));//ur email
-//        message.setRecipients(Message.RecipientType.TO,
-//        InternetAddress.parse(receiver));//u will send to
-//        message.setSubject("Ticket booked");    
-//        message.setText(use + "Your ticket information is as follows\n");
-//       Transport.send(message);
-//            
-//    }
-//    catch (MessagingException e) 
-//    {
-//        JOptionPane.showMessageDialog(null,e);
-//    }
+       final String username = "cineclick@yahoo.com"; //ur email
+    final String password = "Cineklik2018";
+
+    Properties props = new Properties();
+                
+                props.put("mail.smtp.host", "plus.smtp.mail.yahoo.com");
+		props.put("mail.smtp.socketFactory.port", "465");
+		props.put("mail.smtp.socketFactory.class",
+				"javax.net.ssl.SSLSocketFactory");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.port", "465");
+    Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+    protected PasswordAuthentication getPasswordAuthentication() {
+        return new PasswordAuthentication(username, password);
+    }                            
+});
+
+    try {
+        
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(username));//ur email
+        message.setRecipients(Message.RecipientType.TO,
+        InternetAddress.parse(receiver));//u will send to
+         message.setSubject("Movie booking confirmed");    
+    message.setText("Dear " + use + ", your movie booking was successful. Your movie details are as follows \n\n Movie Name : " + moviename + " \nTime :  " + time + " \nDate :  " + dat + " \nCinema :  " + hallname + " \nScreen no. :  " + theatreid + "\n Seats: "+seats+"\n\nWe hope you enjoy your movie.\n ");
+    Transport.send(message);
+}
+
+    catch (MessagingException e) 
+    {
+        JOptionPane.showMessageDialog(null,e);
+    }
+      
+  }
+public void cancelled(String receiver,String use,String dat,String time, String hallname,String movie) {   
+
+    final String username = "cineclick@yahoo.com"; //ur email
+    final String password = "Cineklik2018";
+
+    Properties props = new Properties();
+                
+                props.put("mail.smtp.host", "plus.smtp.mail.yahoo.com");
+		props.put("mail.smtp.socketFactory.port", "465");
+		props.put("mail.smtp.socketFactory.class",
+				"javax.net.ssl.SSLSocketFactory");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.port", "465");
+    Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+    protected PasswordAuthentication getPasswordAuthentication() {
+        return new PasswordAuthentication(username, password);
+    }                            
+});
+
+    try {
+        
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(username));//ur email
+        message.setRecipients(Message.RecipientType.TO,
+        InternetAddress.parse(receiver));//u will send to
+         message.setSubject("Movie booking confirmed");    
+    //message.setText("Dear " + use + ", your movie booking was successful. Your movie details are as follows \n\n Movie Name : " + moviename + " \nTime :  " + time + " \nDate :  " + dat + " \nCinema :  " + hallname + " \nScreen no. :  " + theatreid + "\n Seats: "+seats+"\n\nWe hope you enjoy your movie.\n ");
+        message.setText("Dear " + use + ", your booking cancellation has been processed for " + movie + " at " + time + " on " + dat + " at " + hallname + "\nThe refund will reflect in your account shortly.\n ");
+    Transport.send(message);
+}
+
+    catch (MessagingException e) 
+    {
+        JOptionPane.showMessageDialog(null,e);
+    }
+  }
+public void alert(String receiver, String use) {   
+
+final String username = "cineclick@yahoo.com"; //ur email
+    final String password = "Cineklik2018";
+
+    Properties props = new Properties();
+                
+                props.put("mail.smtp.host", "plus.smtp.mail.yahoo.com");
+		props.put("mail.smtp.socketFactory.port", "465");
+		props.put("mail.smtp.socketFactory.class",
+				"javax.net.ssl.SSLSocketFactory");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.port", "465");
+    Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+    protected PasswordAuthentication getPasswordAuthentication() {
+        return new PasswordAuthentication(username, password);
+    }                            
+});
+
+    try {
+        
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(username));//ur email
+        message.setRecipients(Message.RecipientType.TO,
+        InternetAddress.parse(receiver));//u will send to
+         message.setSubject("Movie booking confirmed");
+         message.setText("Dear " + use + ", \n \n  This is an auto generated email from CineClick. \n We have noticed that you’ve made multiple bookings at similar timings.\n If you wish to change your booking kindly log in to your account. If you do not wish to make any changes, kindly ignore this email. \nThank you.");
+    Transport.send(message);
+}
+
+    catch (MessagingException e) 
+    {
+        JOptionPane.showMessageDialog(null,e);
+    }
+  }
+public void forgetpassword(String receiver,String use,String pass) {   
+
+     final String username = "cineclick@yahoo.com"; //ur email
+    final String password = "Cineklik2018";
+
+    Properties props = new Properties();
+                
+                props.put("mail.smtp.host", "plus.smtp.mail.yahoo.com");
+		props.put("mail.smtp.socketFactory.port", "465");
+		props.put("mail.smtp.socketFactory.class",
+				"javax.net.ssl.SSLSocketFactory");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.port", "465");
+    Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+    protected PasswordAuthentication getPasswordAuthentication() {
+        return new PasswordAuthentication(username, password);
+    }                            
+});
+
+    try {
+        
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(username));//ur email
+        message.setRecipients(Message.RecipientType.TO,
+        InternetAddress.parse(receiver));//u will send to
+         message.setSubject("Reset password");    
+        message.setText("Dear "+use+", \n \n "+ " This is an auto generated email from CineClick. \n We have logged a request that you have forgotten your account password. Your account password is : " + pass);
+        Transport.send(message);
+}
+
+    catch (MessagingException e) 
+    {
+        JOptionPane.showMessageDialog(null,e);
+    }
   }
 }

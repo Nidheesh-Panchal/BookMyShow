@@ -7,12 +7,19 @@ package login;
 
 import javax.swing.JOptionPane;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentListener;
 import java.awt.event.KeyEvent;
 import static java.awt.event.KeyEvent.*;
 import java.awt.event.WindowListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import java.sql.*;
 import java.time.LocalDateTime;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 /**
@@ -26,11 +33,10 @@ public class mainpage extends javax.swing.JFrame {
      */
     String username;
     private final login log;
-
     
     public static Connection connecrDb() {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bms", "root", "root");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bms", "root", "password");
             return conn;
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
@@ -38,12 +44,145 @@ public class mainpage extends javax.swing.JFrame {
         }
         return null;
     }
+    String moviename;
+    int hallid;
+    String hall;
+    int movieno;
+    String dat;
     JPanel a=new javax.swing.JPanel();
+    JPanel b=new javax.swing.JPanel();
     JButton s[]=new JButton[100];
     Connection conn = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
     DefaultComboBoxModel location=new DefaultComboBoxModel();
+    DefaultListModel hist = new DefaultListModel();
+    int index;
+    ActionListener listen=new ActionListener(){
+        
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            if (e.getSource() instanceof JButton) 
+            {
+                //JButton mov=(JButton)e.getsource();
+                Icon i=((JButton)e.getSource()).getIcon();
+                String loc=i.toString();
+                //JOptionPane.showMessageDialog(null,loc);
+                int j=loc.length();
+                loc=loc.substring(j-6,j);
+                if( '/'==loc.charAt(0))
+                {
+                    loc=loc.substring(1);
+                }
+                loc=loc.substring(0,loc.length()-4);
+                index=Integer.valueOf(loc);
+                movieno=index;
+//                JOptionPane.showMessageDialog(null,movieno);
+                showdesc();
+//                String sql="select * from movie where movieid=?;";
+//                try
+//                {
+//                    pst = conn.prepareStatement(sql);
+//                    pst.setString(1,Integer.toString(index));
+//                    rs=pst.executeQuery();
+//                    if(rs.next())
+//                    {
+//                        mname_label.setText(rs.getNString("mname"));
+//                        genre_label.setText(rs.getNString("genre"));
+//                        mdesc_label.setText(rs.getNString("mdescription"));
+//                        screen.setViewportView(movie_desc);
+//                        moviename=mname_label.getText();
+//                    }
+//                }
+//                catch(Exception ex)
+//                {
+//                    JOptionPane.showMessageDialog(null,ex);
+//                }
+//                for (int i = 0; i < s.length; i++)
+//                {
+//                    if (e.getSource() == s[i])
+//                    {
+//                        //s[i].setIcon(); //my particular action for that button
+//                        JOptionPane.showMessageDialog(null,i);
+//                    }                                       
+//                }
+            }
+        }
+    };
+    
+    ActionListener halllisten=new ActionListener(){
+        
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            if (e.getSource() instanceof JButton) 
+            {
+                //JButton mov=(JButton)e.getsource();
+                //Icon i=((JButton)e.getSource()).getIcon();
+//                JOptionPane.showMessageDialog(null,"not here");
+                hall=((JButton)e.getSource()).getText();
+                //JOptionPane.showMessageDialog(null,loc);
+                int j=hall.length();
+                //loc=loc.substring(j-6,j);
+//                if( '/'==loc.charAt(0))
+//                {
+//                    loc=loc.substring(1);
+//                }
+//                loc=loc.substring(0,loc.length()-4);
+//                index=Integer.valueOf(loc);
+                //JOptionPane.showMessageDialog(null,index);
+                int i;
+                for(i=0;i<j;i++)
+                {
+                    if(hall.charAt(i)=='.')
+                        break;
+                }
+                hallid=Integer.parseInt(hall.substring(0,i));
+                for(;i<j;i++)
+                {
+                    if(hall.charAt(i)==' ')
+                        break;
+                }
+                hall=hall.substring(2,i);
+                calling();
+//                seat s=new seat(username,this);
+//        s.setVisible(true);
+//        this.setVisible(false);
+//        this.dispose();
+//                
+//                String sql="select * from movie where movieid=?;";
+//                try
+//                {
+//                    pst = conn.prepareStatement(sql);
+//                    pst.setString(1,Integer.toString(index));
+//                    rs=pst.executeQuery();
+//                    if(rs.next())
+//                    {
+//                        mname_label.setText(rs.getNString("mname"));
+//                        genre_label.setText(rs.getNString("genre"));
+//                        mdesc_label.setText(rs.getNString("mdescription"));
+//                        screen.setViewportView(movie_desc);
+//                        movie=mname_label.toString();
+//                    }
+//                }
+//                catch(Exception ex)
+//                {
+//                    JOptionPane.showMessageDialog(null,ex);
+//                }
+//                for (int i = 0; i < s.length; i++)
+//                {
+//                    if (e.getSource() == s[i])
+//                    {
+//                        //s[i].setIcon(); //my particular action for that button
+//                        JOptionPane.showMessageDialog(null,i);
+//                    }                                       
+//                }
+            }
+        }
+    };
+        
+    
     public mainpage(String use,login form) {
         initComponents();
         username=use;
@@ -72,9 +211,17 @@ public class mainpage extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        search_txt = new javax.swing.JTextField();
+        movpic = new javax.swing.JScrollPane();
+        location_combo = new javax.swing.JComboBox<>();
+        logout_button = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        history_list = new javax.swing.JList<>();
         updateprofile_panel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         username_txt = new javax.swing.JTextField();
@@ -89,12 +236,15 @@ public class mainpage extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         mail_txt = new javax.swing.JTextField();
         update_button = new javax.swing.JButton();
-        logout_button = new javax.swing.JButton();
-        screen = new javax.swing.JScrollPane();
-        go_button = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        location_combo = new javax.swing.JComboBox<>();
         date_choose = new com.toedter.calendar.JDateChooser();
+        screen = new javax.swing.JScrollPane();
+        movie_desc = new javax.swing.JPanel();
+        mname_label = new javax.swing.JLabel();
+        genre_label = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        mdesc_label = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        go_button = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -156,6 +306,12 @@ public class mainpage extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setLocation(new java.awt.Point(200, 80));
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -165,30 +321,75 @@ public class mainpage extends javax.swing.JFrame {
             }
         });
 
+        jPanel7.setBackground(new java.awt.Color(153, 0, 0));
+
+        jButton2.setBackground(new java.awt.Color(255, 153, 0));
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton2.setText("Search");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        search_txt.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        movpic.setBackground(new java.awt.Color(153, 0, 0));
+        movpic.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        location_combo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        logout_button.setBackground(new java.awt.Color(255, 153, 0));
+        logout_button.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        logout_button.setText("Log Out");
+        logout_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logout_buttonActionPerformed(evt);
+            }
+        });
+
+        jPanel6.setBackground(new java.awt.Color(153, 0, 0));
+        jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jPanel3.setBackground(new java.awt.Color(153, 0, 0));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "History", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(255, 153, 0))); // NOI18N
+
+        jButton1.setBackground(new java.awt.Color(255, 153, 0));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton1.setText("Book Movie");
+        jButton1.setText("Cancel Ticket");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "History", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
+        history_list.setEnabled(false);
+        jScrollPane1.setViewportView(history_list);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(91, 91, 91)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 168, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
 
-        updateprofile_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Update", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
+        updateprofile_panel.setBackground(new java.awt.Color(153, 0, 0));
+        updateprofile_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Update", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(255, 153, 0))); // NOI18N
         updateprofile_panel.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 updateprofile_panelComponentShown(evt);
@@ -196,6 +397,7 @@ public class mainpage extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Username");
 
         username_txt.setEditable(false);
@@ -206,26 +408,32 @@ public class mainpage extends javax.swing.JFrame {
         });
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("New Password");
 
         password_txt.setEchoChar('\u2022');
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Retype Password");
 
         repass_txt.setEchoChar('\u2022');
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("First Name");
 
         jLabel11.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Last Name");
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Email Id");
 
         mail_txt.setEditable(false);
 
+        update_button.setBackground(new java.awt.Color(255, 153, 0));
         update_button.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         update_button.setText("Update");
         update_button.addActionListener(new java.awt.event.ActionListener() {
@@ -315,30 +523,6 @@ public class mainpage extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        logout_button.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        logout_button.setText("Log Out");
-        logout_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logout_buttonActionPerformed(evt);
-            }
-        });
-
-        screen.setViewportBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        screen.setMaximumSize(new java.awt.Dimension(438, 224));
-        screen.setMinimumSize(new java.awt.Dimension(438, 224));
-        screen.setPreferredSize(new java.awt.Dimension(438, 224));
-
-        go_button.setText("Go");
-        go_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                go_buttonActionPerformed(evt);
-            }
-        });
-
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        location_combo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-
         date_choose.setDateFormatString("yyyy-MM-dd");
         date_choose.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         date_choose.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -347,56 +531,137 @@ public class mainpage extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        screen.setViewportBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        screen.setMaximumSize(new java.awt.Dimension(438, 224));
+        screen.setMinimumSize(new java.awt.Dimension(438, 224));
+        screen.setPreferredSize(new java.awt.Dimension(438, 224));
+
+        movie_desc.setBackground(new java.awt.Color(255, 153, 0));
+        movie_desc.setPreferredSize(new java.awt.Dimension(438, 224));
+
+        mname_label.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        mname_label.setText("M");
+
+        genre_label.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        genre_label.setText("g");
+
+        mdesc_label.setColumns(20);
+        mdesc_label.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
+        mdesc_label.setLineWrap(true);
+        mdesc_label.setRows(5);
+        jScrollPane2.setViewportView(mdesc_label);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setText("Genre : ");
+
+        javax.swing.GroupLayout movie_descLayout = new javax.swing.GroupLayout(movie_desc);
+        movie_desc.setLayout(movie_descLayout);
+        movie_descLayout.setHorizontalGroup(
+            movie_descLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(movie_descLayout.createSequentialGroup()
+                .addGroup(movie_descLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(movie_descLayout.createSequentialGroup()
+                        .addGap(146, 146, 146)
+                        .addComponent(mname_label))
+                    .addGroup(movie_descLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(movie_descLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(movie_descLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(genre_label)))))
+                .addContainerGap(94, Short.MAX_VALUE))
+        );
+        movie_descLayout.setVerticalGroup(
+            movie_descLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(movie_descLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(mname_label)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(movie_descLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(genre_label)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+
+        screen.setViewportView(movie_desc);
+
+        go_button.setBackground(new java.awt.Color(255, 153, 0));
+        go_button.setText("Go");
+        go_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                go_buttonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(179, 179, 179)
-                        .addComponent(jButton1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(screen, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(screen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(movpic, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(logout_button)))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
+                                .addComponent(logout_button))))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(103, 103, 103)
+                        .addComponent(search_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(70, 70, 70)
                         .addComponent(location_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(date_choose, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(go_button)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(logout_button)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(movpic)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(search_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2))
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(go_button)
+                            .addComponent(date_choose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(location_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(screen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(logout_button)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(go_button)
-                            .addComponent(location_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(date_choose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(screen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -421,7 +686,32 @@ public class mainpage extends javax.swing.JFrame {
     private void updateprofile_panelComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_updateprofile_panelComponentShown
         // TODO add your handling code here:
     }//GEN-LAST:event_updateprofile_panelComponentShown
-
+    private void calling()
+    {
+//        JOptionPane.showMessageDialog(null,Integer.parseInt(hall)+".");
+        //hallid=Integer.parseInt(hall);
+        String som="select chname from cinemahall where challid=?;";
+        try
+        {
+            pst=conn.prepareStatement(som);
+            pst.setString(1,Integer.toString(hallid));
+            rs=pst.executeQuery();
+            int count=0;
+            if(rs.next())
+            {
+                hall=rs.getNString(1);
+            }
+            location_combo.setModel(location);
+        }
+        catch(SQLException e)
+        {
+            JOptionPane.showMessageDialog(null,e);
+        }
+        seat s=new seat(username,this);
+        s.setVisible(true);
+        this.setVisible(false);
+        this.dispose();
+    }
     private void update_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_buttonActionPerformed
         // TODO add your handling code here:        
         if(password_txt.getText().equals(""))
@@ -463,10 +753,16 @@ public class mainpage extends javax.swing.JFrame {
     }//GEN-LAST:event_update_buttonActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        
+        JPanel temp=new JPanel();
+        temp.setBackground(Color.orange);
+        screen.setViewportView(temp);
        // JPanel a=new javax.swing.JPanel();
 	//a.setLayout(new BoxLayout(a,BoxLayout.Y_AXIS));
         a.setLayout(new BoxLayout(a, BoxLayout.Y_AXIS));
+        a.setBackground(Color.orange);
+        a.setSize(438,224);
+        b.setLayout(new BoxLayout(b, BoxLayout.X_AXIS));
+        b.setBackground(Color.orange);
 //        JButton b = new javax.swing.JButton("Hello world!");
 //        JButton c = new javax.swing.JButton("Hello world!");
 //        JButton d = new javax.swing.JButton("Hello world!");
@@ -507,9 +803,11 @@ public class mainpage extends javax.swing.JFrame {
 //        screen.getViewport().add(a);
 //        screen.repaint();
 //        screen.updateUI();
-        java.util.Date dat=new Date(System.currentTimeMillis());
-        //System.out.println(dat);
-        date_choose.setDate(dat);
+        java.util.Date daty=new Date(System.currentTimeMillis());
+                
+        //System.out.println(tim);
+        date_choose.setDate(daty);
+        date_choose.setMinSelectableDate(daty);
         String loc="select distinct(chlocation) from cinemahall;";
         try
         {
@@ -566,8 +864,94 @@ public class mainpage extends javax.swing.JFrame {
 //            }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
-        }        // TODO add your handling code here:
+        }
+        // TODO add your handling code here:
+        String moviepic="select movieid from movie order by movieid";
+        JButton[] movie=new JButton[100];
+        try
+        {
+            pst = conn.prepareStatement(moviepic);
+            rs=pst.executeQuery();
+            while (rs.next())
+            {
+                int i=rs.getInt(1);
+                String movno=Integer.toString(i);
+//                System.out.println(movno);
+                movie[i]=new JButton();
+                movie[i].setOpaque(true);
+                movie[i].setBackground(Color.orange);
+                movie[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/moviepos/"+movno+".jpg")));
+                movie[i].addActionListener(listen);
+                b.add((Component)movie[i]);
+               
+            }
+             b.setAutoscrolls(true);
+        }
+        catch(Exception e)
+        { 
+            JOptionPane.showMessageDialog(null, e);
+        }
+//        String ik="1";
+//        JButton d = new javax.swing.JButton();
+//        JButton e = new javax.swing.JButton();
+//        JButton f = new javax.swing.JButton();
+//        JButton g = new javax.swing.JButton();
+//        JButton h = new javax.swing.JButton();
+//        JButton i = new javax.swing.JButton();
+//        d.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/"+ik+".jpg")));
+//        e.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/TheNunPoster.jpg")));
+//        f.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/TheNunPoster.jpg")));
+//        g.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/TheNunPoster.jpg")));
+//        h.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/TheNunPoster.jpg")));
+//        i.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/TheNunPoster.jpg")));
+//        b.add((Component)d);
+//        b.add((Component)e);
+//        b.add((Component)f);
+//        b.add((Component)g);
+//        b.add((Component)h);
+//        b.add((Component)i);
         
+//        b.setAutoscrolls(true);
+        //JScrollPane sp=new javax.swing.JScrollPane(a);
+        //screen.add(sp,0);
+        //screen.setViewportView(a);
+        movpic.getViewport().add(b);
+        movpic.repaint();
+        movpic.updateUI();
+
+//thenun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/TheNunPoster.jpg")));
+        
+
+//thenun.setIcon(abc);
+        hist.removeAllElements();
+        history_list.setModel(hist);
+        sql="select t.date,t.time,m.mname,c.chname from ticket t inner join screening s on (t.theatreid,t.challid,t.date,t.time)=(s.theatreid,s.challid,s.date,s.time) inner join movie m on s.movieid=m.movieid inner join cinemahall c on c.challid=t.challid where username=? group by t.theatreid,t.challid,t.date,t.time order by t.date;";
+        try
+        {
+            pst = conn.prepareStatement(sql);
+            pst.setString(1,username);
+            rs=pst.executeQuery();
+            while (rs.next())
+            {
+                Date expdatesqldate=rs.getDate(1);
+//               System.out.println(expdatesqldate);
+               String ddexp=Integer.toString(expdatesqldate.getDate());
+               String mmexp=Integer.toString(expdatesqldate.getMonth()+1);
+               String yyexp=Integer.toString(expdatesqldate.getYear()+1900);
+               String expdatesql=yyexp+"-"+mmexp+"-"+ddexp;
+               String timing=Integer.toString(rs.getInt(2));
+               String moviename=rs.getNString(3);
+               String challname=rs.getNString(4);
+               hist.addElement(expdatesql + "       " + timing + "       " + moviename + "       " + challname);
+            }
+        }
+        catch(Exception e)
+        { 
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+        history_list.setModel(hist);
+        this.repaint();
     }//GEN-LAST:event_formWindowOpened
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
@@ -577,8 +961,8 @@ public class mainpage extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        seat s=new seat(username,this);
-        s.setVisible(true);
+        cancel c=new cancel(this,username);
+        c.setVisible(true);
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -608,7 +992,8 @@ public class mainpage extends javax.swing.JFrame {
 //        javaDate date = new Date();  
 //        //System.out.println(formatter.format(date));  
 //        date_choose.set'
-        
+        a.setBackground(Color.orange);
+        a.removeAll();
         java.util.Date date=date_choose.getDate();
         String dd=Integer.toString(date.getDate());
         String mm=Integer.toString(date.getMonth()+1);
@@ -616,45 +1001,50 @@ public class mainpage extends javax.swing.JFrame {
        
         //System.out.println(yy);
         String book_date=yy+"-"+mm+"-"+dd;
+        dat=book_date;
         
-        String find="select s.challid from screening s inner join cinemahall c on s.challid=c.challid where c.chlocation=? and s.movieid=? and date=? group by s.challid;";
+        String find="select s.challid,c.chname from screening s inner join cinemahall c on s.challid=c.challid where c.chlocation=? and s.movieid=? and s.date=? group by s.challid;";
         int count=0;
         try
         {
             pst = conn.prepareStatement(find);
             pst.setString(1,(String)location.getSelectedItem());
-            pst.setString(2,"1");
+            pst.setString(2,Integer.toString(movieno));
             pst.setString(3,book_date);
             rs = pst.executeQuery();
             //JOptionPane.showMessageDialog(null,location.getSelectedItem());
-            System.out.println(book_date);
+//            System.out.println(book_date);
             while(rs.next())
             {
-//                System.out.println(rs.getInt(1));
+////                System.out.println(rs.getInt(1));
+//                JOptionPane.showMessageDialog(null,movieno);
                 PreparedStatement p;
                 ResultSet r;
                 String insert="";
-                String show="select time from screening where challid=? and movieid=? and date=? order by time";
+                String show="select distinct(time) from screening where challid=? and movieid=? and date=? order by time";
                 try
                 {
                     p=conn.prepareStatement(show);
                     String temp=Integer.toString(rs.getInt(1));
                     p.setString(1,temp);
-                    p.setString(2,"1");
+                    p.setString(2,Integer.toString(movieno));
                     p.setString(3,book_date);
                     r=p.executeQuery();
                     while(r.next())
                     {
                         String t=Integer.toString(r.getInt(1));
                         insert=insert+" "+t;
-                        System.out.println(insert);
+//                        System.out.println(insert);
                     }                    
                 }
                 catch(Exception ex)
                 {
                     JOptionPane.showMessageDialog(null,ex);
                 }
-                s[count]=new JButton(rs.getInt(1)+"\n"+insert);
+                s[count]=new JButton(rs.getInt(1)+"."+ rs.getNString(2) +"\n"+insert);
+                s[count].setOpaque(true);
+                s[count].setBackground(Color.orange);
+                s[count].addActionListener(halllisten);
                 a.add((Component)s[count]);
                 count++;
             }
@@ -673,6 +1063,84 @@ public class mainpage extends javax.swing.JFrame {
         // TODO add your handling code here:
   
     }//GEN-LAST:event_date_chooseMouseClicked
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        hist.removeAllElements();
+        history_list.setModel(hist);
+        String sql="select t.date,t.time,m.mname,c.chname from ticket t inner join screening s on (t.theatreid,t.challid,t.date,t.time)=(s.theatreid,s.challid,s.date,s.time) inner join movie m on s.movieid=m.movieid inner join cinemahall c on c.challid=t.challid where username=? group by t.theatreid,t.challid,t.date,t.time order by t.date;";
+        try
+        {
+            pst = conn.prepareStatement(sql);
+            pst.setString(1,username);
+            rs=pst.executeQuery();
+            while (rs.next())
+            {
+                Date expdatesqldate=rs.getDate(1);
+//               System.out.println(expdatesqldate);
+               String ddexp=Integer.toString(expdatesqldate.getDate());
+               String mmexp=Integer.toString(expdatesqldate.getMonth()+1);
+               String yyexp=Integer.toString(expdatesqldate.getYear()+1900);
+               String expdatesql=yyexp+"-"+mmexp+"-"+ddexp;
+               String timing=Integer.toString(rs.getInt(2));
+               String moviename=rs.getNString(3);
+               String challname=rs.getNString(4);
+               hist.addElement(expdatesql + "       " + timing + "       " + moviename + "       " + challname);
+            }
+        }
+        catch(Exception e)
+        { 
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+        history_list.setModel(hist);
+    }//GEN-LAST:event_formComponentShown
+
+    private void showdesc()
+    {
+        String sql="select * from movie where movieid=?;";
+        try
+        {
+            pst = conn.prepareStatement(sql);
+            pst.setString(1,Integer.toString(movieno));
+            rs=pst.executeQuery();
+            if(rs.next())
+            {
+                mname_label.setText(rs.getNString("mname"));
+                genre_label.setText(rs.getNString("genre"));
+                mdesc_label.setText(rs.getNString("mdescription"));
+                screen.setViewportView(movie_desc);
+                moviename=mname_label.getText();
+            }
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null,ex);
+        }
+    }
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String sql="select movieid from movie where mname=?;";
+        try
+        {
+            pst = conn.prepareStatement(sql);
+            pst.setString(1,search_txt.getText());
+            rs=pst.executeQuery();
+            if (rs.next())
+            {
+                movieno=rs.getInt(1);
+                showdesc();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "No such movie exists.Please check the movie name again.");
+            }
+        }
+        catch(Exception e)
+        { 
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -712,10 +1180,14 @@ public class mainpage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser date_choose;
     private javax.swing.JTextField fname_txt;
+    private javax.swing.JLabel genre_label;
     private javax.swing.JButton go_button;
+    private javax.swing.JList<String> history_list;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -728,16 +1200,23 @@ public class mainpage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField lname_txt;
     private javax.swing.JComboBox<String> location_combo;
     private javax.swing.JButton logout_button;
     private javax.swing.JTextField mail_txt;
+    private javax.swing.JTextArea mdesc_label;
+    private javax.swing.JLabel mname_label;
+    private javax.swing.JPanel movie_desc;
+    private javax.swing.JScrollPane movpic;
     private javax.swing.JPasswordField password_txt;
     private javax.swing.JPasswordField repass_txt;
     public javax.swing.JScrollPane screen;
+    private javax.swing.JTextField search_txt;
     private javax.swing.JButton update_button;
     private javax.swing.JPanel updateprofile_panel;
     private javax.swing.JTextField username_txt;
