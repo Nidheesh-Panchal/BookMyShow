@@ -10,7 +10,9 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -216,6 +218,7 @@ public class cancel extends javax.swing.JFrame {
         // TODO add your handling code here:
         LocalDateTime ti=LocalDateTime.now();
         String tim=ti.toString();
+         LocalDate todaydate=LocalDate.now();
         tim=tim.substring(11,13) + tim.substring(14,16);
         String movieid="";
         String challid="";
@@ -225,6 +228,7 @@ public class cancel extends javax.swing.JFrame {
         String getchname="select challid from cinemahall where chname=?";
         String delete="delete from ticket where username=? and theatreid=? and challid=? and time=? and date=?;";
         //dtm.;
+        LocalDate canceldate;
         
         int row=ticket_table.getSelectedRow();
         if(row==-1)
@@ -284,7 +288,12 @@ public class cancel extends javax.swing.JFrame {
 //            String dd=Integer.toString(date.getDate());
 //            String mm=Integer.toString(date.getMonth()+1);
 //            String yy=Integer.toString(date.getYear()+1900);
+            
             dalit=(String)ticket_table.getValueAt(row, 0);
+            //canceldate=(Date) dalit;
+           // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-mm-dd");
+            canceldate = LocalDate.parse(dalit);
+
             pst.setString(4,dalit);
             rs = pst.executeQuery();
             if(rs.next())
@@ -316,6 +325,11 @@ public class cancel extends javax.swing.JFrame {
             {
                int time=rs.getInt(1);
                int t1=Integer.parseInt(tim);
+               if(canceldate.compareTo(todaydate)<0)
+               {
+                   JOptionPane.showMessageDialog(null,"Your deadline for ticket cancellation is reached. You cannot cancel your ticket now.");
+                   return;
+               }
                if(t1+300 > time)
                {
                    JOptionPane.showMessageDialog(null,"Your deadline for ticket cancellation is reached. You cannot cancel your ticket now.");

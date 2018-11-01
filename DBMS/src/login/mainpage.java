@@ -321,6 +321,9 @@ public class mainpage extends javax.swing.JFrame {
             }
         });
 
+        jPanel7.setBackground(new java.awt.Color(153, 0, 0));
+
+        jButton2.setBackground(new java.awt.Color(255, 153, 0));
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton2.setText("Search");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -331,10 +334,12 @@ public class mainpage extends javax.swing.JFrame {
 
         search_txt.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
+        movpic.setBackground(new java.awt.Color(153, 0, 0));
         movpic.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         location_combo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
+        logout_button.setBackground(new java.awt.Color(255, 153, 0));
         logout_button.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         logout_button.setText("Log Out");
         logout_button.addActionListener(new java.awt.event.ActionListener() {
@@ -343,10 +348,13 @@ public class mainpage extends javax.swing.JFrame {
             }
         });
 
+        jPanel6.setBackground(new java.awt.Color(153, 0, 0));
         jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "History", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
+        jPanel3.setBackground(new java.awt.Color(153, 0, 0));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "History", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(255, 153, 0))); // NOI18N
 
+        jButton1.setBackground(new java.awt.Color(255, 153, 0));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton1.setText("Cancel Ticket");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -380,7 +388,8 @@ public class mainpage extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        updateprofile_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Update", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
+        updateprofile_panel.setBackground(new java.awt.Color(153, 0, 0));
+        updateprofile_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Update", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(255, 153, 0))); // NOI18N
         updateprofile_panel.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 updateprofile_panelComponentShown(evt);
@@ -388,6 +397,7 @@ public class mainpage extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Username");
 
         username_txt.setEditable(false);
@@ -398,26 +408,32 @@ public class mainpage extends javax.swing.JFrame {
         });
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("New Password");
 
         password_txt.setEchoChar('\u2022');
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Retype Password");
 
         repass_txt.setEchoChar('\u2022');
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("First Name");
 
         jLabel11.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Last Name");
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Email Id");
 
         mail_txt.setEditable(false);
 
+        update_button.setBackground(new java.awt.Color(255, 153, 0));
         update_button.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         update_button.setText("Update");
         update_button.addActionListener(new java.awt.event.ActionListener() {
@@ -520,6 +536,7 @@ public class mainpage extends javax.swing.JFrame {
         screen.setMinimumSize(new java.awt.Dimension(438, 224));
         screen.setPreferredSize(new java.awt.Dimension(438, 224));
 
+        movie_desc.setBackground(new java.awt.Color(255, 153, 0));
         movie_desc.setPreferredSize(new java.awt.Dimension(438, 224));
 
         mname_label.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -572,6 +589,7 @@ public class mainpage extends javax.swing.JFrame {
 
         screen.setViewportView(movie_desc);
 
+        go_button.setBackground(new java.awt.Color(255, 153, 0));
         go_button.setText("Go");
         go_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -736,12 +754,15 @@ public class mainpage extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         JPanel temp=new JPanel();
+        temp.setBackground(Color.orange);
         screen.setViewportView(temp);
        // JPanel a=new javax.swing.JPanel();
 	//a.setLayout(new BoxLayout(a,BoxLayout.Y_AXIS));
         a.setLayout(new BoxLayout(a, BoxLayout.Y_AXIS));
+        a.setBackground(Color.orange);
         a.setSize(438,224);
         b.setLayout(new BoxLayout(b, BoxLayout.X_AXIS));
+        b.setBackground(Color.decode("#800000"));
 //        JButton b = new javax.swing.JButton("Hello world!");
 //        JButton c = new javax.swing.JButton("Hello world!");
 //        JButton d = new javax.swing.JButton("Hello world!");
@@ -857,6 +878,8 @@ public class mainpage extends javax.swing.JFrame {
                 String movno=Integer.toString(i);
 //                System.out.println(movno);
                 movie[i]=new JButton();
+                movie[i].setOpaque(true);
+                movie[i].setBackground(Color.BLACK);
                 movie[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/moviepos/"+movno+".jpg")));
                 movie[i].addActionListener(listen);
                 b.add((Component)movie[i]);
@@ -969,6 +992,7 @@ public class mainpage extends javax.swing.JFrame {
 //        javaDate date = new Date();  
 //        //System.out.println(formatter.format(date));  
 //        date_choose.set'
+        a.setBackground(Color.orange);
         a.removeAll();
         java.util.Date date=date_choose.getDate();
         String dd=Integer.toString(date.getDate());
@@ -1018,6 +1042,8 @@ public class mainpage extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null,ex);
                 }
                 s[count]=new JButton(rs.getInt(1)+"."+ rs.getNString(2) +"\n"+insert);
+                s[count].setOpaque(true);
+                s[count].setBackground(Color.orange);
                 s[count].addActionListener(halllisten);
                 a.add((Component)s[count]);
                 count++;
